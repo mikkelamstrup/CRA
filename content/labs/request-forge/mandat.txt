@@ -1,0 +1,20 @@
+CYBERCON · MANDAT RF-1010
+
+Rolle: offensiv tester. Kunde og data er fiktive.
+Tilladt mål: din egen udleverede CRA-mål-IP, HTTP på port 8081.
+Tilladt: inspicere klientkode og egne requests, manipulere og gensende HTTP,
+udnytte SQL-injektion, læse schemastruktur og udlede den interne beviskode.
+Du må bruge din egen operator til scripts og lagring af egne beviser.
+
+Automatisering: én request ad gangen, højst 10.000 requests pr. kørsel,
+timeout på hver request og stop ved uventet status. Ingen passwordbruteforce.
+Ingen scanning uden for målet, andre elevlabs, CRA-login, kontrolplan, skole,
+hjemmenet eller offentlige sider. Ingen fil-/shelladgang, databaseændringer,
+tilgængelighedsangreb eller forsøg på VM-flugt. Du har ingen mål-SSH-adgang.
+
+Leverance: reproducerbar angrebskæde og præcist bevis for dataudledning.
+Ingen reparation kræves. Afslut med en kort forklaring på årsagen og én
+relevant afhjælpning; hovedvægten er angrebet og bevisernes kvalitet.
+
+700 point gives for korrekt flag i CRA. Rapporten vurderes manuelt.
+Flaget dokumenterer kendskab til resultatet, ikke angrebsmetode eller forståelse.

@@ -1,0 +1,9 @@
+# Preparation only. Replace the UUID and hostname after the owner selects a domain.
+# Keep the CRA-specific credential outside Git, mode 0600, parent directory 0700.
+tunnel: 00000000-0000-0000-0000-000000000000
+credentials-file: /home/crauser/cra-public-access/tunnel.json
+
+ingress:
+  - hostname: cra.example.invalid
+    service: http://127.0.0.1:28000
+  - service: http_status:404

@@ -1,0 +1,4 @@
+Nordlys driftsjournal / syntetisk øvelsesdata
+09:05 NL-206: planlagt backup afsluttet. Rapport: /rapporter/rapport-206.txt
+09:20 NL-207: intern rapport publiceret på webserveren. Rapport: /rapporter/rapport-207.txt
+09:25: Stien blev skrevet i robots.txt. Der blev ikke indført login eller adgangskontrol.

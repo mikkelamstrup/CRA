@@ -1,0 +1,59 @@
+{
+  "day": 3,
+  "version": 1,
+  "title": "Web Inspector · HTTP og DNS",
+  "summary": "Følg navneopslag og HTTP-forespørgsler frem til en konkret kilde.",
+  "mission_id": "web-trail-dns",
+  "mission_version": 1,
+  "goals": [
+    "Forklar forskellen på DNS-navn, IP-adresse, port og URL.",
+    "Foretag et rigtigt DNS-opslag mod labbets navneserver.",
+    "Læs HTTP-headers og begrund hvad status og indhold viser."
+  ],
+  "schedule": [
+    "Lektion 1 · teori og demonstration",
+    "Lektion 2–3 · individuel undersøgelse og hjælp efter behov",
+    "Lektion 4 · flag, forklaring og gemte noter",
+    "Lektion 5 · stop solo, fordel holdroller og start fælles lab",
+    "Lektion 6 · efterprøv fund og byt roller",
+    "Lektion 7 · fælles afleveringsnote og 15 minutters debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / Fra navn til adresse",
+      "text": "DNS forbinder navne med blandt andet IP-adresser. En A-record indeholder en IPv4-adresse. DNS leverer ikke websidens indhold; det kommer i næste forbindelse. I denne nye mission findes rapport.nordlys.test kun i dit lab. Den tidligere Websporet-opgave er bevaret og har ikke denne DNS-service.",
+      "exercise": "Læs forsiden med curl -i http://MÅL-IP:8080/. Kør dig @MÅL-IP rapport.nordlys.test A. Find status, ANSWER og svaradressen."
+    },
+    {
+      "title": "02 / Et negativt svar er også data",
+      "text": "Et ukendt navn kan give NXDOMAIN. Det er forskelligt fra timeout, hvor klienten ikke fik et brugbart svar. @MÅL-IP bestemmer hvilken navneserver dig spørger. Et svar fra en anden server kan være anderledes.",
+      "exercise": "Sammenlign rapport.nordlys.test med mangler.nordlys.test mod samme server. Gem begge statuskoder. Prøv også +tcp og forklar at DNS kan bruge både UDP og TCP."
+    },
+    {
+      "title": "03 / HTTP har sine egne oplysninger",
+      "text": "En URL består her af protokol, navn, port og sti. HTTP-headers kommer før en tom linje og selve indholdet. 200, 404 og adgangsafvisning er forskellige svar. curl --resolve knytter et navn til en adresse for denne ene curl-kørsel; dit forrige dig-opslag er stadig det egentlige DNS-bevis.",
+      "exercise": "Kør curl --resolve rapport.nordlys.test:8080:MÅL-IP -i http://rapport.nordlys.test:8080/. Følg /service/ til rapport NL-308. Sammenlign med /findes-ikke. Aflever flaget og gem URL’er/status."
+    },
+    {
+      "title": "04 / Service Desk · holdmission",
+      "text": "Gem og stop solos før holdstart. Læreren vælger Web Inspector som fælles holdmission. En deltager undersøger DNS, en HTTP og en dokumenterer. Hver bruger sin egen mål-IP; navnet er fælles. Byt roller og kontrollér hinandens fund.",
+      "exercise": "Skriv en supportbesked i holdnotesbogen: hvilket navn, hvilken server, hvilken port og URL virker, hvilken fejl kan reproduceres, og hvad er endnu uafklaret? Aflevér ét fælles flag, og lad alle forklare forskellen på DNS og HTTP."
+    }
+  ],
+  "commands": [
+    "dig @MÅL-IP NAVN A",
+    "dig +tcp @MÅL-IP NAVN A",
+    "curl -i",
+    "curl --resolve NAVN:PORT:IP URL",
+    "nmap -sT -p 8080"
+  ],
+  "reflection": [
+    "Kan DNS virke, selv om webserveren er nede?",
+    "Hvorfor er --resolve ikke i sig selv et DNS-opslag?",
+    "Hvilket negativt svar hjalp jer mest?"
+  ],
+  "bonus": [
+    "Læs kun headers med curl -I, og sammenlign med curl -i.",
+    "Forklar hvorfor robots.txt fra den tidligere opgave ikke er adgangskontrol."
+  ]
+}

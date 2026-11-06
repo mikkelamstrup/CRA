@@ -1,0 +1,535 @@
+{
+  "format": 1,
+  "packages": [
+    {
+      "name": "gcc-15-base",
+      "version": "15.2.0-16ubuntu1",
+      "sha256": "5a302d705d562fb7e150415b00651c00fed58b633faadff0b332eac1b73fadb3"
+    },
+    {
+      "name": "libisl23",
+      "version": "0.27-1build1",
+      "sha256": "02ea5de2ab6ddba978606ad58647bf6371ea68c0ed63aa5d6d0d3b8c1fe77ea3"
+    },
+    {
+      "name": "libmpc3",
+      "version": "1.3.1-3",
+      "sha256": "a95c75b486f26fe8b140a632fd9e2883b7e2efc21f7586e155d27d2d2ff0ddc0"
+    },
+    {
+      "name": "cpp-15-x86-64-linux-gnu",
+      "version": "15.2.0-16ubuntu1",
+      "sha256": "1649aa71c45b047feda5b9ca303c94799bdba5befa5c9de9735cbfc59c3ef93f"
+    },
+    {
+      "name": "cpp-15",
+      "version": "15.2.0-16ubuntu1",
+      "sha256": "baacc9086e17c8cadc3603365e660f907bca483de4446e56e6f1bc25da4c02be"
+    },
+    {
+      "name": "cpp-x86-64-linux-gnu",
+      "version": "4:15.2.0-5ubuntu1",
+      "sha256": "18b35148f64d0bb17b5c34efa6bdeefa4df9ca122ba12130f7245bccd65a950a"
+    },
+    {
+      "name": "cpp",
+      "version": "4:15.2.0-5ubuntu1",
+      "sha256": "05a64873a18fb10d52ba2c8ee1fd0a605a974d75264d824ef2771c799f49ea63"
+    },
+    {
+      "name": "docutils-common",
+      "version": "0.22.4+dfsg-1",
+      "sha256": "1afaed1cd7cc5597a7e4b6c46fc8600a6ab088d86bc53fece1caa5dce1463dab"
+    },
+    {
+      "name": "libcc1-0",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "484ac5fd30a19bfade8db336fe70f3c046beccd1c9a9ac327fcd89d29dd5a125"
+    },
+    {
+      "name": "libgomp1",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "add19738c63794d2aa9ac529d3b8aebe2e88980faecb6c1c59f07aefd6c3c314"
+    },
+    {
+      "name": "libitm1",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "ef841c269b5e9f324e38b1069f712a13c29237051f037847d1de79441dc3a9a2"
+    },
+    {
+      "name": "libasan8",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "d59b3a851c0b58759e9f940fa407f68a6ef46401381e5389c74e5ded5419262d"
+    },
+    {
+      "name": "liblsan0",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "c90895d3b6cd164fcb54def68c7dff74419f869c837fa607e3f54c1a0e742263"
+    },
+    {
+      "name": "libtsan2",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "95b7a9b63096840cb960562d190a802a541055366eb4bc756c763d7de6e174d8"
+    },
+    {
+      "name": "libubsan1",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "cde09806b1b60d0ab8ab96033177cb21a0290333a946f25572de8f72b4403695"
+    },
+    {
+      "name": "libhwasan0",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "6bd25c936289463c6472290d3b4377edf8dd4f5e3a07f356fb0adf2de04a8055"
+    },
+    {
+      "name": "libquadmath0",
+      "version": "16-20260322-1ubuntu1",
+      "sha256": "420e777fef436f397a85ddedde53fbb44f92c7ca8e87d581f9d86573859e1aa4"
+    },
+    {
+      "name": "libgcc-15-dev",
+      "version": "15.2.0-16ubuntu1",
+      "sha256": "32fa5bde1891f46fd4f422e466c863fb78e834b634e1aa08211c8eea68870af5"
+    },
+    {
+      "name": "gcc-15-x86-64-linux-gnu",
+      "version": "15.2.0-16ubuntu1",
+      "sha256": "df0e5375c9e981b18e396c2e9ec1e359f226576a9b94a311bf07603f3ca6023a"
+    },
+    {
+      "name": "gcc-15",
+      "version": "15.2.0-16ubuntu1",
+      "sha256": "28da225c111d3ce9d230209cca24db46ec645f631f593f188bef718d8a1e4711"
+    },
+    {
+      "name": "gcc-x86-64-linux-gnu",
+      "version": "4:15.2.0-5ubuntu1",
+      "sha256": "7393f33be5584941bcfbd03a25901058c708046ee5dded01c21d56652a2d0eb7"
+    },
+    {
+      "name": "gcc",
+      "version": "4:15.2.0-5ubuntu1",
+      "sha256": "d780844418b745c432a5d6c85f055625f37e27523b026baee0c87d386a0aab0a"
+    },
+    {
+      "name": "gettext",
+      "version": "0.23.2-1",
+      "sha256": "6fb2dd68379bf9578af5ead58203ab322e3b1cf3a6f9562a1e4d12c18e923bfc"
+    },
+    {
+      "name": "native-architecture",
+      "version": "0.2.6build1",
+      "sha256": "d9eb011adc50e75fc8feea6725b2de0faa9f28e71b77bb047d483cf54987bfa7"
+    },
+    {
+      "name": "girepository-tools",
+      "version": "2.88.0-1ubuntu0.1",
+      "sha256": "f9eb68227c898b9f399254055744140037d5d9d5d4da2f24b6af1088d912ddc8"
+    },
+    {
+      "name": "libcap-ng-dev",
+      "version": "0.8.5-4build5",
+      "sha256": "cc8e37d194eb5dda55787031da9805e6c95325b71b8299b65da4057b9e1e0acb"
+    },
+    {
+      "name": "libudev-dev",
+      "version": "259.5-0ubuntu3.4",
+      "sha256": "d7368a8fc7e9381a56ef8a4ad7057396a88cbc085eb2ae7900a1ff2a9772f741"
+    },
+    {
+      "name": "libsepol-dev",
+      "version": "3.9-2",
+      "sha256": "b0dd63141194c49e026036a06f21a7e05f2e5080e3909e4043a29e8662c4d4c9"
+    },
+    {
+      "name": "libpcre2-16-0",
+      "version": "10.46-1build1",
+      "sha256": "76b4096fd9476d8d2eec24c6bca8fdfcab108a72e33f0fbcb47aa5cb7ef8de87"
+    },
+    {
+      "name": "libpcre2-32-0",
+      "version": "10.46-1build1",
+      "sha256": "a385713732a7411d39ba5c057f8e5727d0cdf3bf8afa36cbe1104c66ae2acd5b"
+    },
+    {
+      "name": "libpcre2-posix3",
+      "version": "10.46-1build1",
+      "sha256": "167414af3004dbdb0ec9099ce9dd65141f9257a7622eebcefc3875fc9499ab1f"
+    },
+    {
+      "name": "libpcre2-dev",
+      "version": "10.46-1build1",
+      "sha256": "203dd2049aebc6e7d674f79e5f377263a1907e156469b496378047a20ecf3e54"
+    },
+    {
+      "name": "libselinux-dev",
+      "version": "3.9-4build1",
+      "sha256": "300abd658047ee4aeeef8e120c1950d1c253c0a4c27acf9999e232393a4fb385"
+    },
+    {
+      "name": "libdevmapper-dev",
+      "version": "2:1.02.205-2ubuntu3",
+      "sha256": "43b303d9b7569ea7b245052b9299603125c8e37abc866180ad4926dd96720653"
+    },
+    {
+      "name": "libevent-2.1-7t64",
+      "version": "2.1.12-stable-10ubuntu0.2",
+      "sha256": "427917ba97310d8c6caa8c012e9a9b7e3bbdf643ce0c4150e53891ffd83b8822"
+    },
+    {
+      "name": "libffi-dev",
+      "version": "3.5.2-4",
+      "sha256": "6f594146dc6f5d77694811c38c6743a99424e5bdd2e955afa82fcd19883f42cc"
+    },
+    {
+      "name": "uuid-dev",
+      "version": "2.41.3-3ubuntu2.2",
+      "sha256": "0ba791f89888491857c69ad3d59d8517d4926eae0c242f213579fc59ea0b5e94"
+    },
+    {
+      "name": "libblkid-dev",
+      "version": "2.41.3-3ubuntu2.2",
+      "sha256": "93fa0902918628b9482caca650e63a0e6b9fc971f8ac64fc902f79b87dfa039d"
+    },
+    {
+      "name": "libmount-dev",
+      "version": "2.41.3-3ubuntu2.2",
+      "sha256": "4501dd47c9597c33afd37fc3d9eb5f3b9acdc336bab090b2fc8bb63feec96f12"
+    },
+    {
+      "name": "libsysprof-capture-4-dev",
+      "version": "50.0-1",
+      "sha256": "dd4d9812c035d6731229650c6860a07586961c2ac491de622032a338ba0129f0"
+    },
+    {
+      "name": "libpkgconf7",
+      "version": "2.5.1-4",
+      "sha256": "353f622f6432a3d65bedd3c23e0af98c2c438650b497b355772a56a05ebf7dd0"
+    },
+    {
+      "name": "pkgconf-bin",
+      "version": "2.5.1-4",
+      "sha256": "9690471f395b6652f2cd8962334b9400e26a10daf4af7bf2f2c1a0325c193f0b"
+    },
+    {
+      "name": "pkgconf",
+      "version": "2.5.1-4",
+      "sha256": "9d23ccd2a24d8618ca8bc7f1e14e1d02b9632854d69c82b6f8753dc5c1a98b16"
+    },
+    {
+      "name": "zlib1g-dev",
+      "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+      "sha256": "3c38ab54eebd22b7f67697c81c96dca078e43efc1695afddb2df71ddcb82e717"
+    },
+    {
+      "name": "libgio-2.0-dev",
+      "version": "2.88.0-1ubuntu0.1",
+      "sha256": "61064485b5aca20235061ba40ad96479b157d01dd665eae5ada1d6ea633082b5"
+    },
+    {
+      "name": "libgio-2.0-dev-bin",
+      "version": "2.88.0-1ubuntu0.1",
+      "sha256": "fae209b40494aeeb5f4366e263d2707f077c53a5b34f4114f40f33d932867c52"
+    },
+    {
+      "name": "libglib2.0-dev-bin",
+      "version": "2.88.0-1ubuntu0.1",
+      "sha256": "989ae4b1ab4a7dff4e1750a34fedee76fb0c9ed8332ae66dbd6054b5520d9b68"
+    },
+    {
+      "name": "libglib2.0-dev",
+      "version": "2.88.0-1ubuntu0.1",
+      "sha256": "6238834dab8cccc5f7bfc4b7f534a44b54e50b1edd96ef28a30529d9f8689c35"
+    },
+    {
+      "name": "libgmpxx4ldbl",
+      "version": "2:6.3.0+dfsg-5ubuntu2",
+      "sha256": "07bd53c587140613b3d551bdbd4a15a37002c1fe971962ab49e2c2c896cf7dda"
+    },
+    {
+      "name": "libgmp-dev",
+      "version": "2:6.3.0+dfsg-5ubuntu2",
+      "sha256": "b43e38f2d5ae4aa38471e1b3f90ed63e96c2ce614ffe496cdcd72f9944e87a4a"
+    },
+    {
+      "name": "libunbound8",
+      "version": "1.24.2-1ubuntu2.3",
+      "sha256": "054039efc4a15fec863cb870136f2086c2350cb3d06bede4e26f3497ed95db6b"
+    },
+    {
+      "name": "libgnutls-dane0t64",
+      "version": "3.8.12-2ubuntu1.1",
+      "sha256": "111084e500e1626bdba4de1bddace1631c96a7c94dae23fd6c5fd4bd825995b4"
+    },
+    {
+      "name": "libgnutls-openssl27t64",
+      "version": "3.8.12-2ubuntu1.1",
+      "sha256": "a8d12f55cb4dbe991821402b2e5fcd9f731dccb317e2a73c9d329d49bb9e9281"
+    },
+    {
+      "name": "libidn2-dev",
+      "version": "2.3.8-4build1",
+      "sha256": "62a09e8a10b1b7704dace298fd2a0e65e414890297497d5b4ac1a96891b3dd6f"
+    },
+    {
+      "name": "libp11-kit-dev",
+      "version": "0.26.2-2",
+      "sha256": "079f2a9cb6215753bcc13bfea01a136fd07376fb9f8c3233efc712df40e584bd"
+    },
+    {
+      "name": "libtasn1-6-dev",
+      "version": "4.21.0-2",
+      "sha256": "1f47dbb4b688665621f5846043ab20ff00ad0859bedfea93d019a0b66978331d"
+    },
+    {
+      "name": "nettle-dev",
+      "version": "3.10.2-1",
+      "sha256": "8d996790c80f2ece3f8885708e051966b3e6e427f919bf259e3282e1f7286041"
+    },
+    {
+      "name": "libgnutls28-dev",
+      "version": "3.8.12-2ubuntu1.1",
+      "sha256": "08d8b727af0e1a9f48902c0a4726689d2823dc304187e3a988e55cd1f3e35f9e"
+    },
+    {
+      "name": "libnl-3-dev",
+      "version": "3.12.0-2",
+      "sha256": "3e8647ecd5f9ba32d0873c0bb60bd615c900c0e0e4c1bb79b4d8cde8c45d434e"
+    },
+    {
+      "name": "libnl-route-3-dev",
+      "version": "3.12.0-2",
+      "sha256": "8a5095c7c055e18d2cd0e67887c1244840981c32698ca30c67d6bcd86e754ea3"
+    },
+    {
+      "name": "libpciaccess0",
+      "version": "0.18.1-1ubuntu4.1",
+      "sha256": "8733699ae9d7102a84cd10a1f0f0769b684c6ca8842035db389bb6b8310f72dd"
+    },
+    {
+      "name": "libseccomp-dev",
+      "version": "2.6.0-2ubuntu5",
+      "sha256": "74f9974205539e66b5e8ac1df326dc252c90c6816a5decae03a32df745d252f8"
+    },
+    {
+      "name": "liblzma-dev",
+      "version": "5.8.3-1",
+      "sha256": "4755b21ef0f3c04a9b7544d31341e8fbf3e835817e7b65e5f1b7e17b855c3c43"
+    },
+    {
+      "name": "libxml2-dev",
+      "version": "2.15.2+dfsg-0.1ubuntu0.2",
+      "sha256": "d6ae493e70510eb2611c60bb335e70a6f9e67eea8d532a78a5007312b932c172"
+    },
+    {
+      "name": "ninja-build",
+      "version": "1.13.2-1",
+      "sha256": "533239a464183f041f7c979f899fd8419e31ac82366540e57902a255de78f156"
+    },
+    {
+      "name": "meson",
+      "version": "1.10.1-1ubuntu2",
+      "sha256": "854f70286df0fa259e9e6c2c18cdfeb41276dc3afa4356f2a2605439baf31d5f"
+    },
+    {
+      "name": "pkg-config",
+      "version": "2.5.1-4",
+      "sha256": "0ec36b7cce8fa2072260020a42d2b77ddc31b2eba606356ccc4120f4caddb805"
+    },
+    {
+      "name": "python3-roman-numerals",
+      "version": "4.1.0-1",
+      "sha256": "ead4626e6d901f90757510c82c7d09bb540985def2a23e4a03d29b6e75248058"
+    },
+    {
+      "name": "python3-docutils",
+      "version": "0.22.4+dfsg-1",
+      "sha256": "3c0c77db8f167f15ad03f70da4ba4e9d447e929bbed5efbd7ec01460b3381415"
+    },
+    {
+      "name": "libapparmor-dev",
+      "version": "5.0.2-0ubuntu1~26.04.1",
+      "sha256": "a3c1157b922b5e85baba69f02586d94e85d6820e84a11f3df55ce4a8a56298fa"
+    },
+    {
+      "name": "libnuma-dev",
+      "version": "2.0.19-1build1",
+      "sha256": "6919389facd4ada9722cb7024f7613a6bbd5afc9556c18d8959d0dff32931496"
+    },
+    {
+      "name": "libpciaccess-dev",
+      "version": "0.18.1-1ubuntu4.1",
+      "sha256": "110f19d3175be0b731d29d09fbf3e4a6b71d0969bc9508ffa814ee80c0127409"
+    },
+    {
+      "name": "libtirpc-dev",
+      "version": "1.3.7-0.1",
+      "sha256": "31a3752146b7cdccfab5788962fd1b0694205f484cde294c99c2859d2300d3c4"
+    },
+    {
+      "name": "libyajl2",
+      "version": "2.1.0-5.1",
+      "sha256": "049df3f8e8aed7272fd5c65b8709e66d77b1539791f65d5dfb5026048cacceac"
+    },
+    {
+      "name": "libyajl-dev",
+      "version": "2.1.0-5.1",
+      "sha256": "d874bc34f20d573e6e5fcb86fab7f627fd9c70d08db2f8704c2137c918b91d7e"
+    },
+    {
+      "name": "xsltproc",
+      "version": "1.1.45-0.1",
+      "sha256": "780e5d4aa3c41d93f0b443daa06c4de751918a4682e4b45b687d2dfc6077944f"
+    },
+    {
+      "name": "libjson-c-dev",
+      "version": "0.18+ds-3",
+      "sha256": "af4e187e01fcee2b2523b9bc052d7988b0070d2934762453701dad10c1005689"
+    },
+    {
+      "name": "libapparmor1",
+      "version": "5.0.2-0ubuntu1~26.04.1",
+      "sha256": "50570ebe581bbfeead4403571b75ee275955c6bcbd1b4bf342228772549162b9"
+    },
+    {
+      "name": "libblkid1",
+      "version": "2.41.3-3ubuntu2.2",
+      "sha256": "929ebedb610fa4dfa16cada763cea7e8ed4bd37c68573563410614189bd4e537"
+    },
+    {
+      "name": "libcap-ng0",
+      "version": "0.8.5-4build5",
+      "sha256": "ef20434fbf03076d238155e937870cf389884ae81bd8c3569ff6043aef6da398"
+    },
+    {
+      "name": "libdevmapper-event1.02.1",
+      "version": "2:1.02.205-2ubuntu3",
+      "sha256": "a8a50f95fa70966e9f3212bcbc9aa0e7fb5817615ce6652beab8c0ab3590f396"
+    },
+    {
+      "name": "libdevmapper1.02.1",
+      "version": "2:1.02.205-2ubuntu3",
+      "sha256": "679251083dfdab47493131744496aac22a027104cce5617df890416891352b7d"
+    },
+    {
+      "name": "libffi8",
+      "version": "3.5.2-4",
+      "sha256": "4a7423124bbd459c0aa38b7389ec7802fa6899654767a95fc27de70967fedd48"
+    },
+    {
+      "name": "libglib2.0-0t64",
+      "version": "2.88.0-1ubuntu0.1",
+      "sha256": "7868fd4b24fd4b6e644a63685b6d0c282c6b636deac842d1455d71ff5c9ecd07"
+    },
+    {
+      "name": "libgmp10",
+      "version": "2:6.3.0+dfsg-5ubuntu2",
+      "sha256": "a9bbe9d4a4bcd5875bbd0f53e67c379bc881d1c1a80522d51dfb4b107cc31819"
+    },
+    {
+      "name": "libgnutls30t64",
+      "version": "3.8.12-2ubuntu1.1",
+      "sha256": "b08d4e2842cd53dbe1565a46bd11d6f7ecb36bc08b236802ae4da744cae9f691"
+    },
+    {
+      "name": "libhogweed6t64",
+      "version": "3.10.2-1",
+      "sha256": "1c8c808ab24ff3018ac886e3f311edee0f2d4d97d12d3908be52343e89807046"
+    },
+    {
+      "name": "libidn2-0",
+      "version": "2.3.8-4build1",
+      "sha256": "92bdac0f443a648859d06dee3defb9c96864fd76df6cfe617ca70bb261344767"
+    },
+    {
+      "name": "libjson-c5",
+      "version": "0.18+ds-3",
+      "sha256": "a19fa7f6504920f13e5fd291cf3c626d7201a48a0d80fde7cdac34f95306d352"
+    },
+    {
+      "name": "liblzma5",
+      "version": "5.8.3-1",
+      "sha256": "38ad8500817a9159db210fecfb8c50fa82d7a8829730fcdf8ae60e3523676d41"
+    },
+    {
+      "name": "libmount1",
+      "version": "2.41.3-3ubuntu2.2",
+      "sha256": "7b8f05d4346049c50d846e1947ec12aff36f3dd44cbd5ee4e8505245cd86b461"
+    },
+    {
+      "name": "libnettle8t64",
+      "version": "3.10.2-1",
+      "sha256": "83a2a924c11759a2ed6e6f98f456d28e1b026974ce9e6e7ef12c9ac43b2d543e"
+    },
+    {
+      "name": "libnl-3-200",
+      "version": "3.12.0-2",
+      "sha256": "52fda1b991baa2d0fbe82f5dfb15584dcb1f25a7e3d311e2e319cc33858b4f2c"
+    },
+    {
+      "name": "libnl-route-3-200",
+      "version": "3.12.0-2",
+      "sha256": "58c5fa3c2f5226ffb1846db6cf7318196dbf5294a4354edd00fdae2db30a45dc"
+    },
+    {
+      "name": "libnuma1",
+      "version": "2.0.19-1build1",
+      "sha256": "af7bc28b60948609a36719c249a89aef834812833909774538c19f9d984bef31"
+    },
+    {
+      "name": "libp11-kit0",
+      "version": "0.26.2-2",
+      "sha256": "e70d3422e24b267293215134458f340944bf10e92b27147594c69a7dd2823089"
+    },
+    {
+      "name": "libpcre2-8-0",
+      "version": "10.46-1build1",
+      "sha256": "3e116766f1a7b149994d4745556023d993d26401223d1595520a991d4ba737fb"
+    },
+    {
+      "name": "libseccomp2",
+      "version": "2.6.0-2ubuntu5",
+      "sha256": "c5e4b198f251da0ede226fd179830bd8767482821a1773f835358f726795cb16"
+    },
+    {
+      "name": "libselinux1",
+      "version": "3.9-4build1",
+      "sha256": "3ce3aea44b2ec00780c48b1b8e1f7e672166ec3ccac14b0eae8890e55983061e"
+    },
+    {
+      "name": "libsepol2",
+      "version": "3.9-2",
+      "sha256": "fbad1d0e81e2b18602bce921697fa14c6dc54c09e790f917e1d512f1fb4c320d"
+    },
+    {
+      "name": "libtasn1-6",
+      "version": "4.21.0-2",
+      "sha256": "59c74951324ead0ff77ab945d561feb1b21bc189b793600b8e2b7cf4d39b1ee5"
+    },
+    {
+      "name": "libtirpc3t64",
+      "version": "1.3.7-0.1",
+      "sha256": "a6c68bbbcbaf2941aee004e581289958c690d17b867be510940a82df2a5572c1"
+    },
+    {
+      "name": "libudev1",
+      "version": "259.5-0ubuntu3.4",
+      "sha256": "160b6b18d41c94171a3a6894cbc05f183a534adf8775c2c6fbdd550c4cf42534"
+    },
+    {
+      "name": "libuuid1",
+      "version": "2.41.3-3ubuntu2.2",
+      "sha256": "77e7078fbdb994e3c9c84ce6fc464f0451580d7f0b46c8770d0189b46959ad43"
+    },
+    {
+      "name": "libxml2-16",
+      "version": "2.15.2+dfsg-0.1ubuntu0.2",
+      "sha256": "e5c135f2f2c96058d359922c548a141be0ea019b90c11e80e8b1e3686c4de4c4"
+    },
+    {
+      "name": "zlib1g",
+      "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+      "sha256": "450d9322ac4e9baea0f9a74548a20fde73b078235c1f5d1fb7084c2638e33cdd"
+    }
+  ]
+}

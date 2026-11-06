@@ -1,0 +1,18 @@
+{
+  "format": 1,
+  "node": "24.21.0",
+  "uv": {
+    "version": "0.12.24",
+    "url": "https://files.pythonhosted.org/packages/89/f8/2ef356d9d066686c98854be9e3e41d0ba9d69f7b2495512b6394115fa40c/uv-0.12.24-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "sha256": "e47005957dca320272ad68960b591b854b6bf0c3288368efb096d9ccd06b8404",
+    "binary_entry": "uv-0.12.24.data/scripts/uv",
+    "binary_sha256": "d600a831d3e35128156b89786b0a2d1088cb77c2078d16457f6187e78ba1f085"
+  },
+  "pnpm_native": {
+    "version": "12.10.1",
+    "url": "https://registry.npmjs.org/@pnpm/exe.linux-x64/-/exe.linux-x64-12.10.1.tgz",
+    "sha256": "636abc81221a03b94f0c362bebbf0007dfce977226ad5290afed1fdaa5320aa4",
+    "binary_entry": "package/pnpm",
+    "binary_sha256": "adff96e05dbb1dcb1143f14b6c34cb76953891da4c3627bf8950eb17db44c2fc"
+  }
+}

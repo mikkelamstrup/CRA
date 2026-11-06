@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="da">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nordtele · Ordrestatus</title>
+<h1>Nordtele · Ordrestatus</h1>
+<p>Fiktiv kundeportal i din CRA-øvelse. Brug din udleverede testkonto.</p>
+<form id="login">
+  <label>Bruger <input name="username" autocomplete="username" required></label>
+  <label>Adgangskode <input name="password" type="password" autocomplete="current-password" required></label>
+  <button>Log ind</button>
+</form>
+<form id="search" hidden>
+  <label>Ordrenummer <input name="reference" value="NT-1042" required></label>
+  <button>Kontrollér ordre</button>
+</form>
+<p id="status" role="status">Log ind for at kontrollere en ordre.</p>
+<p>Ordresøgningen viser kun, om der findes et match. Kundedetaljer vises ikke.</p>
+<script src="/client.js" defer></script>
+</html>

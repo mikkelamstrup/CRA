@@ -1,0 +1,33 @@
+{
+  "format": 1,
+  "guest": "ubuntu-24.04-amd64",
+  "profile": "course-v1",
+  "packages": [
+    {
+      "name": "bind9-dnsutils",
+      "version": "1:9.18.39-0ubuntu0.24.04.8",
+      "sha256": "74802756c2dd1e0206fe85af0b07ca491e2ae420c35b435328855aa87bb08486"
+    },
+    {
+      "name": "bind9-host",
+      "version": "1:9.18.39-0ubuntu0.24.04.8",
+      "sha256": "8d7038604df3a435523e57355ad7c5a5cd328a4a2a5ddbaca546552bc62651c9"
+    },
+    {
+      "name": "bind9-libs",
+      "version": "1:9.18.39-0ubuntu0.24.04.8",
+      "sha256": "afc516f760866029713b5fe97b8a725ea83b68cba4ae4f0e3773906ce50278af"
+    },
+    {
+      "name": "dnsmasq-base",
+      "version": "2.91-0ubuntu0.24.04.2",
+      "sha256": "2af43430c69bcb25078975c613b49288bc0474b98fc97af6e1e059dc973416f1"
+    }
+  ],
+  "base_packages": [
+    {
+      "name": "tcpdump",
+      "version": "4.99.4-3ubuntu4.24.04.1"
+    }
+  ]
+}

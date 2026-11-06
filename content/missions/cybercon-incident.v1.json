@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "cybercon-incident",
+  "version": 1,
+  "title": "Cybercon · Alarm hos Nordtele",
+  "summary": "Du er sikkerhedsanalytiker hos Cybercon. Stop et aktivt datalæk hos telekoncernen Nordtele, undersøg årsagen, luk hullerne og genopret sikker kundeadgang.",
+  "briefing": "OPGAVE 13 · Samlet hændelse efter træningsopgaverne 9–12\n\nAKUT SAG CC-901 · Individuel mission\n\nDu er ansat som sikkerhedsanalytiker i det private sikkerhedsfirma Cybercon. Jeres store kunde Nordtele, en fiktiv landsdækkende telekoncern med millioner af kunder, er under angreb. Uvedkommende henter kunderapporter fra erhvervsportalen. Du har ansvaret for at begrænse hændelsen, bevare beviser, undersøge årsagen og reparere adgangsfejlene.\n\nStart med cat /home/cra/academy/cybercon/README.txt. Læs mandat og driftsoverdragelse i samme mappe. De indeholder kundens afgrænsning, testkonti, logkilder og din begrænsede driftsadgang. Portalen ligger på http://MÅL-IP:8081/. Brug kun din egen mål-IP. Du kan løse hele missionen i terminalen; grafisk desktop er valgfrit.\n\nDu arbejder alene i dit eget kundemiljø. Angrebet består af virkelige, afgrænsede HTTP-forsøg fra en øvelsesproces i labbet. Forsøgene fortsætter, indtil sikkerhedskontrollerne afviser dem. Registrér din første observation, begræns lækket, og dokumentér dine beslutninger. Undersøg derefter, hvordan adgangen blev mulig, og gennemfør en varig rettelse. Normal kundeadgang skal fungere igen.\n\nSSH: ssh -F /home/cra/academy/cybercon/ssh_config nordtele. På målmaskinen kan du ændre /etc/cybercon/policy.json og læse de udleverede logs. Du har ingen generel administratoradgang. Kør cybercon-check på målmaskinen til sidst. Den afprøver faktisk adgang for to kunder, anonym adgang, den lækkede session og supporteksporten. Kun en bestået teknisk kontrol giver dit personlige flag. Indsend flaget i CRA.\n\nUdfyld /home/cra/academy/cybercon/rapport.md på din operator: ledelsesstatus, tidslinje med kilder, begrænsning, årsag, omfang og usikkerheder, rettelser samt efterprøvning. Rapporten afleveres til læreren og vurderes særskilt fra flaget. Kopiér rapport og relevante beviser ud, før du fjerner eller nulstiller labbet. Stop/start bevarer dine filer.\n\nScenariet modellerer kundeportalen, ikke hele telekoncernens net. Alle virksomheder, konti og data i hændelsen er fiktive.",
+  "estimated_minutes": 240,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "secure-and-restore",
+      "title": "Stop lækket og genopret sikker drift",
+      "description": "Bestå den faktiske HTTP-kontrol efter reparation. Aflever desuden din individuelle hændelsesrapport til læreren; flaget vurderer kun den tekniske sluttilstand.",
+      "points": 500,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Start med mandat og driftsoverdragelse. Gem første observation og den oprindelige politik før ændringer.",
+    "Undersøg supportpakken og den tidlige accesslog. En offentlig sessionskopi kan give adgang uden at kende brugerens adgangskode.",
+    "Midlertidig lockdown kan begrænse skaden. Den er ikke en permanent løsning, fordi almindelige kunder også bliver blokeret.",
+    "En fjernet supportpakke tilbagekalder ikke en allerede kopieret session. Sammenhold revoked_sessions med dit fund.",
+    "Kontrollér ejerskab ved hver rapportlæsning. Prøv begge testkonti med både egen og den anden kundes rapport.",
+    "Slå normal drift til igen efter reparation og kør cybercon-check via SSH. Dokumentér også hvad logs ikke beviser."
+  ]
+}

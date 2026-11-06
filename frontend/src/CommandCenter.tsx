@@ -1,0 +1,55 @@
+import {useEffect,useRef,useState} from 'react';
+import type {CenterOverview,CenterEvents,CenterEvent,CenterLab,UserView} from './contracts';
+import {phases} from './Teaching';
+import {Traffic} from './Traffic';
+import {ProjectorControl} from './Projector';
+import {Replay} from './Replay';
+import {StudentAssignments} from './StudentAssignments';
+
+const states:Record<string,string>={QUEUED:'I kø',PROVISIONING:'Klargøres',READY:'Klar',STOPPED:'Stoppet',STOPPING:'Stopper',STARTING:'Starter',RESETTING:'Nulstilles',DESTROYING:'Fjernes',ERROR:'Teknisk fejl'};
+const sources:Record<string,string>={control:'Labserver',score:'Svarvalidering',teaching:'Undervisning'};
+const evidence:Record<string,string>={validated:'Valideret opgavemål',submitted:'Indleveret af deltager',system:'Systemhændelse'};
+const actions={start:'Start miljø',stop:'Stop og bevar filer',reset:'Nulstil miljø'};
+type Action=keyof typeof actions;
+export function CommandCenter({user,onTeaching}:{user:UserView;onTeaching:()=>void}){
+ const [overview,setOverview]=useState<CenterOverview|null>(null),[events,setEvents]=useState<CenterEvent[]>([]),[selected,setSelected]=useState('');
+ const [error,setError]=useState(''),[actionError,setActionError]=useState(''),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false),[last,setLast]=useState(0),[now,setNow]=useState(Date.now());
+ const [confirmation,setConfirmation]=useState<{lab:CenterLab;action:Action;key:string}|null>(null);
+ const refresh=useRef<()=>Promise<void>>(async()=>{});
+ useEffect(()=>{
+  let live=true,pending=false;let domain=0,teaching=0;const abort=new AbortController();
+  async function read<T>(path:string){const r=await fetch('/api/v1/command-center/'+path,{signal:abort.signal});if(!r.ok)throw new Error('Oversigten kan ikke bekræftes. Kontroller forbindelsen og din læreradgang.');return r.json() as Promise<T>;}
+  async function poll(){if(pending||!live)return;pending=true;try{
+   const [data,page]=await Promise.all([read<CenterOverview>('overview'),read<CenterEvents>(`events?domain_after=${domain}&teaching_after=${teaching}&tail=${domain===0&&teaching===0}`)]);
+   if(!live)return;setOverview(data);setSelected(old=>old||data.labs[0]?.id||'');
+   setEvents(old=>{const unique=new Map(old.map(e=>[e.event_id,e]));for(const e of page.events)unique.set(e.event_id,e);return [...unique.values()].sort((a,b)=>a.occurred_at.localeCompare(b.occurred_at)||a.stream.localeCompare(b.stream)||a.sequence-b.sequence).slice(-150);});
+   domain=page.domain_cursor;teaching=page.teaching_cursor;setLast(Date.now());setError('');
+  }catch(e){if(live)setError((e as Error).message);}finally{pending=false;}}
+  refresh.current=poll;void poll();const timer=setInterval(()=>{setNow(Date.now());void poll();},1500);return()=>{live=false;abort.abort();clearInterval(timer);};
+ },[]);
+ const stale=!!error||!last||now-last>20000,lab=overview?.labs.find(l=>l.id===selected);
+ function choose(item:CenterLab){if(busy)return;setSelected(item.id);setConfirmation(null);setActionError('');setNotice('');}
+ async function manage(){if(!confirmation||busy)return;setBusy(true);setActionError('');const {lab:item,action,key}=confirmation;
+  try{const r=await fetch(`/api/v1/command-center/labs/${item.id}/${action}`,{method:'POST',headers:{'Content-Type':'application/json','X-CRA-CSRF':user.csrf_token,'Idempotency-Key':key},body:JSON.stringify({generation:item.generation})});
+   if(!r.ok){let code='';try{code=(await r.json()).detail;}catch{}throw new Error(code==='generation_changed'?'Miljøet har fået en ny generation. Luk bekræftelsen og vælg handlingen igen.':code==='stop_team_first'?'Elevens holdmiljø skal først stoppes.':code==='stop_solo_first'?'Holdets deltagere skal først stoppe deres solomiljøer.':code==='capacity_unavailable'?'Der er ikke kapacitet til at starte dette miljø.':'Handlingen kunne ikke bestilles. Opdatér og kontrollér status.');}
+   setConfirmation(null);setNotice(`${actions[action]} er bestilt. Vent på miljøets bekræftede status.`);await refresh.current();
+  }catch(e){setActionError((e as Error).message);}finally{setBusy(false);}}
+ return <section className="command-center"><div className="page-heading"><div><p className="eyebrow">NORDLYS / LÆRERENS OPERATIONSOVERSIGT</p><h1>Command <em>Center</em></h1><p>Følg det, der kan dokumenteres. Hjælp eleverne videre.</p></div><div className="center-live"><span className={'dot '+(!stale?'ready':'checking')}/><strong>{stale?'Status ubekræftet':'Opdaterer automatisk'}</strong><small>{last?'Sidste svar '+new Date(last).toLocaleTimeString('da-DK'):'Henter observationer…'}</small></div></div>
+ {error&&<p className="notice error" role="alert">{error} De viste data kan være gamle.</p>}
+ {!overview?<p role="status">Henter Command Center…</p>:<>
+ <div className="center-metrics"><article><span>UNDERVISNING</span><strong>{overview.session?`Dag ${overview.session.day}`:'Ingen session'}</strong><small>{overview.session?phases[overview.session.phase]:'Start i lærerrummet'}</small></article><article><span>LABS I DIN ORGANISATION</span><strong>{overview.labs.filter(l=>l.state==='READY'&&!l.stale).length}<small> / {overview.lab_count}</small></strong><small>Senest observeret klar</small></article><article><span>HJÆLP</span><strong>{overview.help_count}</strong><button className="quiet" onClick={onTeaching}>Åbn undervisning og hjælpekø →</button></article>{(overview.nodes??[overview.capacity]).map(node=><article key={node.node_id} className={node.stale?'capacity-stale':''}><span>SERVER {node.node_id}</span><strong>{node.stale?'Ikke bekræftet':`${((node.available_memory_mib??0)/1024).toLocaleString('da-DK',{minimumFractionDigits:1,maximumFractionDigits:1})} GiB fri`}</strong><small>{node.stale?'Afventer frisk observation':`${node.active_labs} aktive labs · ${node.free_disk_gib} GiB disk fri`}</small>{!node.accept_new&&<small>Nye miljøer er sat på pause</small>}</article>)}</div>
+ <p className="muted center-capacity-note">Hvert miljø bliver på sin server. Ledig RAM kontrolleres pr. server ved start, og 4 GiB holdes i reserve på hver server.</p>
+ <Replay/>
+ <StudentAssignments user={user} onChange={()=>refresh.current()}/>
+ <ProjectorControl user={user} labs={overview.labs}/><div className="center-grid"><section className="center-labs" aria-label="Klassens miljøer"><div className="section-heading"><h2>Miljøer</h2><span>{overview.lab_count} i alt</span></div>
+ {!overview.labs.length&&<div className="learning-card"><h3>Klar til første mission</h3><p>Elevernes solo- og holdmiljøer vises her, når de oprettes. Du kan selv afprøve et hold under Mit hold.</p></div>}
+ <div className="center-lab-list">{overview.labs.map(item=><button key={item.id} className={'center-lab '+(item.id===selected?'selected':'')} aria-pressed={item.id===selected} onClick={()=>choose(item)}><span className="center-lab-title"><strong>{item.team_name??item.owner_display_name}</strong><span className={'status-chip '+(item.state==='ERROR'?'error':'')}>{states[item.state]??item.state}{item.stale?' · ubekræftet':''}</span></span><span>{item.mission_title}</span><span className="center-lab-meta">{item.operator_count} operator{item.operator_count===1?'':'er'} · Generation {item.generation}{item.desktop_enabled?' · Grafik':''}</span><span className="objective-progress" aria-label={`${item.completed_objectives.length} af ${item.objective_count} mål valideret i denne generation`}><i style={{width:`${item.completed_objectives.length/item.objective_count*100}%`}}/></span><small>{item.completed_objectives.length}/{item.objective_count} valideret nu · {item.earned_points} optjente point</small></button>)}</div>
+ {overview.truncated&&<p className="notice">Viser de 100 senest ændrede miljøer.</p>}
+ {lab&&<article className="center-detail learning-card" aria-label="Valgt miljø"><p className="eyebrow">VALGT MILJØ · {lab.id.slice(0,8)}</p><h3>{lab.team_name??lab.owner_display_name}</h3><p>{lab.mission_title} · {lab.operator_count+1} virtuelle maskiner</p><dl><dt>Status</dt><dd>{states[lab.state]??lab.state}</dd><dt>Seneste nodeobservation</dt><dd>{lab.observed_at?new Date(lab.observed_at).toLocaleTimeString('da-DK'):'Afventer'}</dd><dt>Ejer</dt><dd>{lab.owner_name}</dd></dl>{lab.stale&&<p className="notice">VM-tilstanden er ikke frisk bekræftet. En bestilt handling er ikke det samme som en gennemført handling.</p>}{lab.error_code&&<p className="error">Teknisk fejl: {lab.error_code}</p>}
+ <div className="lab-actions">{(['start','stop','reset'] as Action[]).filter(a=>a==='start'?(lab.state==='STOPPED'||lab.state==='ERROR'&&lab.error_code==='runtime_drift'):a==='stop'?lab.state==='READY':['READY','STOPPED','ERROR'].includes(lab.state)).map(action=><button key={action} disabled={busy||stale} className={action==='reset'?'quiet danger':'secondary'} onClick={()=>{setConfirmation({lab,action,key:crypto.randomUUID()});setActionError('');setNotice('');}}>{actions[action]}</button>)}</div>
+ {confirmation&&<div className="notice" role="group" aria-label="Bekræft lærerhandling"><strong>{actions[confirmation.action]}: {confirmation.lab.team_name??confirmation.lab.owner_display_name}</strong><p>{confirmation.lab.operator_count+1} VM’er · generation {confirmation.lab.generation}. {confirmation.action==='reset'?'Alle labfiler og åbne programmer slettes. Point og platformnoter bevares.':confirmation.action==='stop'?'Programmer lukkes, mens diske, point og platformnoter bevares.':'Det bevarede miljø startes, hvis overgangen og kapaciteten tillader det.'}</p><button disabled={busy||stale} className={confirmation.action==='reset'?'danger-button':''} onClick={()=>void manage()}>{busy?'Bestiller…':'Bekræft '+actions[confirmation.action].toLowerCase()}</button> <button disabled={busy} className="quiet" onClick={()=>{setConfirmation(null);setActionError('');}}>Annullér</button></div>}
+ {actionError&&<p className="error" role="alert">{actionError}</p>}{notice&&<p role="status">{notice}</p>}<p className="muted">Administration åbner ikke elevens terminal eller skrivebord.</p></article>}
+ </section><section className="center-feed" aria-label="Hændelsesforløb"><div className="section-heading"><h2>Hændelser</h2><span>VIRKELIGE KILDER</span></div><p className="muted">Et indleveret fund er elevens oplysning. Kun validerede opgavemål giver automatisk point. Stille terminaler siger intet om forståelse.</p>{!events.length?<div className="learning-card">Ingen registrerede hændelser endnu.</div>:<ol className="event-timeline">{[...events].reverse().map(event=><li key={event.event_id} className={'event-'+event.evidence_level}><span className="event-dot"/><div><small>{new Date(event.occurred_at).toLocaleTimeString('da-DK')} · {sources[event.source]}</small><strong>{event.summary}</strong><span>{evidence[event.evidence_level]}{event.lab_id?` · ${event.lab_id.slice(0,8)} / gen ${event.generation}`:''}</span><small>{event.initiator_type==='system'?'Systemobservation':'Brugerhandling'}</small></div></li>)}</ol>}<p className="muted">Viser op til 150 indlæste hændelser. Ingen terminaloptagelser.</p></section></div>
+ {lab&&<Traffic key={lab.id+':'+lab.generation} lab={lab}/>}
+ </> }</section>;
+}

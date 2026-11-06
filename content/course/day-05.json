@@ -1,0 +1,58 @@
+{
+  "day": 5,
+  "version": 1,
+  "title": "Packet Hunter · Spor i trafikken",
+  "summary": "Undersøg en rigtig optagelse af labtrafik og sammenhold den med tidsstemplede kilder.",
+  "mission_id": "packet-hunter",
+  "mission_version": 1,
+  "goals": [
+    "Skeln mellem historisk trafik og en aktuel service.",
+    "Læs en capture med tid, kilde/destination og protokol.",
+    "Byg en tidslinje uden at opfinde årsager eller loginresultater."
+  ],
+  "schedule": [
+    "Lektion 1 · teori og demonstration",
+    "Lektion 2–3 · individuel undersøgelse",
+    "Lektion 4 · flag, kilde og forklaring",
+    "Lektion 5 · gem/stop solo og fordel holdroller",
+    "Lektion 6 · holdmission, rollebytte og efterprøvning",
+    "Lektion 7 · fælles rapport og debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / Hvad er en capture?",
+      "text": "En capture indeholder pakker, som et målepunkt faktisk så. Den fortæller ikke automatisk, hvem der sad ved tastaturet, eller hvorfor noget skete. Din fil er skabt fra rigtig trafik i dit eget lab under oprettelsen. requests.json beskriver de forespørgsler, klargøringen faktisk sendte.",
+      "exercise": "Læs README. Kør tcpdump -nn -tttt -r /home/cra/academy/capture/incident.pcap. Notér to adresser, en port og det første tidspunkt."
+    },
+    {
+      "title": "02 / Afgræns dit udsnit",
+      "text": "-r læser en gemt fil; -i ville vælge et interface til ny optagelse. -nn holder adresser og porte numeriske. Et filter vælger hvilke pakker du ser, men ændrer ikke originalfilen. HTTP uden TLS kan vise indhold i klartekst.",
+      "exercise": "Kør tcpdump -nn -A -r /home/cra/academy/capture/incident.pcap tcp port 8080. Find en HTTP-forespørgsel og et svar. Åbn eventuelt samme fil i Wireshark inde i labbet og brug http eller Follow TCP Stream."
+    },
+    {
+      "title": "03 / Tid og kilde",
+      "text": "Et tidsstempel afhænger af målemaskinens ur og tidszone. Her bruges UTC. En log og en capture kan måle forskellige øjeblikke af samme forespørgsel. At to ting ligger tæt i tid beviser ikke, at den ene forårsagede den anden.",
+      "exercise": "Find NL-505 og indsend flaget fra responsen. Sammenhold tre requeststier med requests.json. Hent den tidligere rapport-URL med curl og forklar forskellen på historik og nutid."
+    },
+    {
+      "title": "04 / Incident Timeline · holdmission",
+      "text": "Gem og stop solos. Læreren starter et Packet Hunter-holdlab. Hver operator har en capture fra sit eget link til fælles mål, og tidsstemplerne er derfor forskellige. Fordel capture, requestlog, efterprøvning og dokumentation. Byt roller.",
+      "exercise": "Aflevér en fælles tidslinje i holdnotesbogen med mindst tre hændelser, UTC, kilde og sikkerhed i konklusionen. Markér hvad I ikke kan afgøre. Forklar hvorfor ens flag ikke betyder identiske captures."
+    }
+  ],
+  "commands": [
+    "tcpdump -nn -tttt -r FIL",
+    "tcpdump -nn -A -r FIL tcp port 8080",
+    "cat requests.json",
+    "Wireshark: File → Open, http-filter, Follow TCP Stream"
+  ],
+  "reflection": [
+    "Hvad kan et packetfund faktisk bevise?",
+    "Hvorfor kan en historisk200 være en404 nu?",
+    "Hvilken usikkerhed er vigtigst i jeres tidslinje?"
+  ],
+  "bonus": [
+    "Sammenlign TCP-handshake og HTTP-forespørgsel i Wireshark.",
+    "Forklar hvilken information TLS ville skjule, og hvilke metadata der stadig kunne være synlige."
+  ]
+}

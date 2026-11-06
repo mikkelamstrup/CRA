@@ -1,0 +1,3289 @@
+{
+  "AssignmentAlert": {
+    "additionalProperties": false,
+    "properties": {
+      "guidance_id": {
+        "anyOf": [
+          {
+            "format": "uuid",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Guidance Id"
+      },
+      "message": {
+        "title": "Message",
+        "type": "string"
+      },
+      "mission_id": {
+        "title": "Mission Id",
+        "type": "string"
+      },
+      "mission_version": {
+        "title": "Mission Version",
+        "type": "integer"
+      },
+      "released_at": {
+        "format": "date-time",
+        "title": "Released At",
+        "type": "string"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      }
+    },
+    "required": [
+      "mission_id",
+      "mission_version",
+      "released_at",
+      "title",
+      "message"
+    ],
+    "title": "AssignmentAlert",
+    "type": "object"
+  },
+  "AssignmentView": {
+    "additionalProperties": false,
+    "properties": {
+      "available": {
+        "title": "Available",
+        "type": "boolean"
+      },
+      "completed": {
+        "title": "Completed",
+        "type": "boolean"
+      },
+      "earned_points": {
+        "title": "Earned Points",
+        "type": "integer"
+      },
+      "estimated_minutes": {
+        "title": "Estimated Minutes",
+        "type": "integer"
+      },
+      "mission_id": {
+        "title": "Mission Id",
+        "type": "string"
+      },
+      "mission_version": {
+        "title": "Mission Version",
+        "type": "integer"
+      },
+      "release_source": {
+        "enum": [
+          "class",
+          "individual",
+          "teacher",
+          "locked"
+        ],
+        "title": "Release Source",
+        "type": "string"
+      },
+      "summary": {
+        "title": "Summary",
+        "type": "string"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      }
+    },
+    "required": [
+      "mission_id",
+      "mission_version",
+      "title",
+      "summary",
+      "estimated_minutes",
+      "available",
+      "release_source",
+      "completed",
+      "earned_points"
+    ],
+    "title": "AssignmentView",
+    "type": "object"
+  },
+  "AttemptView": {
+    "additionalProperties": false,
+    "properties": {
+      "accepted": {
+        "title": "Accepted",
+        "type": "boolean"
+      },
+      "already_completed": {
+        "title": "Already Completed",
+        "type": "boolean"
+      },
+      "evidence_level": {
+        "enum": [
+          "validated",
+          "none"
+        ],
+        "title": "Evidence Level",
+        "type": "string"
+      },
+      "points_awarded": {
+        "title": "Points Awarded",
+        "type": "integer"
+      },
+      "total_points": {
+        "title": "Total Points",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "accepted",
+      "already_completed",
+      "points_awarded",
+      "total_points",
+      "evidence_level"
+    ],
+    "title": "AttemptView",
+    "type": "object"
+  },
+  "CenterEvents": {
+    "$defs": {
+      "CenterEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "format": "uuid",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "evidence_level": {
+            "enum": [
+              "system",
+              "validated",
+              "submitted"
+            ],
+            "title": "Evidence Level",
+            "type": "string"
+          },
+          "generation": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generation"
+          },
+          "initiator_type": {
+            "enum": [
+              "user",
+              "system"
+            ],
+            "title": "Initiator Type",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "lab_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lab Id"
+          },
+          "occurred_at": {
+            "format": "date-time",
+            "title": "Occurred At",
+            "type": "string"
+          },
+          "receipt_basis": {
+            "default": "recorded",
+            "enum": [
+              "recorded",
+              "transaction_start_legacy"
+            ],
+            "title": "Receipt Basis",
+            "type": "string"
+          },
+          "received_at": {
+            "format": "date-time",
+            "title": "Received At",
+            "type": "string"
+          },
+          "schema_version": {
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "source": {
+            "enum": [
+              "control",
+              "score",
+              "teaching"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "stream": {
+            "enum": [
+              "domain",
+              "teaching"
+            ],
+            "title": "Stream",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id",
+          "sequence",
+          "stream",
+          "schema_version",
+          "lab_id",
+          "generation",
+          "source",
+          "evidence_level",
+          "initiator_type",
+          "occurred_at",
+          "received_at",
+          "kind",
+          "summary"
+        ],
+        "title": "CenterEvent",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "domain_cursor": {
+        "title": "Domain Cursor",
+        "type": "integer"
+      },
+      "events": {
+        "items": {
+          "$ref": "#/$defs/CenterEvent"
+        },
+        "title": "Events",
+        "type": "array"
+      },
+      "has_more": {
+        "title": "Has More",
+        "type": "boolean"
+      },
+      "teaching_cursor": {
+        "title": "Teaching Cursor",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "events",
+      "domain_cursor",
+      "teaching_cursor",
+      "has_more"
+    ],
+    "title": "CenterEvents",
+    "type": "object"
+  },
+  "CenterOverview": {
+    "$defs": {
+      "CapacityView": {
+        "additionalProperties": false,
+        "properties": {
+          "accept_new": {
+            "default": false,
+            "title": "Accept New",
+            "type": "boolean"
+          },
+          "active_labs": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Labs"
+          },
+          "active_limit": {
+            "default": 15,
+            "title": "Active Limit",
+            "type": "integer"
+          },
+          "available_memory_mib": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Available Memory Mib"
+          },
+          "connected": {
+            "title": "Connected",
+            "type": "boolean"
+          },
+          "free_disk_gib": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Free Disk Gib"
+          },
+          "node_id": {
+            "default": 1,
+            "maximum": 2,
+            "minimum": 1,
+            "title": "Node Id",
+            "type": "integer"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "physical_memory_mib": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Physical Memory Mib"
+          },
+          "received_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Received At"
+          },
+          "reservation_limit": {
+            "default": 18,
+            "title": "Reservation Limit",
+            "type": "integer"
+          },
+          "reservations": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reservations"
+          },
+          "reserve_memory_mib": {
+            "default": 4096,
+            "title": "Reserve Memory Mib",
+            "type": "integer"
+          },
+          "running_declared_memory_mib": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Running Declared Memory Mib"
+          },
+          "stale": {
+            "title": "Stale",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "connected",
+          "stale",
+          "observed_at",
+          "received_at",
+          "available_memory_mib",
+          "free_disk_gib",
+          "active_labs",
+          "reservations"
+        ],
+        "title": "CapacityView",
+        "type": "object"
+      },
+      "CenterLab": {
+        "additionalProperties": false,
+        "properties": {
+          "completed_objectives": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Completed Objectives",
+            "type": "array"
+          },
+          "desired_state": {
+            "title": "Desired State",
+            "type": "string"
+          },
+          "desktop_enabled": {
+            "title": "Desktop Enabled",
+            "type": "boolean"
+          },
+          "earned_points": {
+            "title": "Earned Points",
+            "type": "integer"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "mission_id": {
+            "title": "Mission Id",
+            "type": "string"
+          },
+          "mission_title": {
+            "title": "Mission Title",
+            "type": "string"
+          },
+          "node_id": {
+            "maximum": 2,
+            "minimum": 1,
+            "title": "Node Id",
+            "type": "integer"
+          },
+          "objective_count": {
+            "title": "Objective Count",
+            "type": "integer"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "operator_count": {
+            "title": "Operator Count",
+            "type": "integer"
+          },
+          "owner_display_name": {
+            "title": "Owner Display Name",
+            "type": "string"
+          },
+          "owner_id": {
+            "format": "uuid",
+            "title": "Owner Id",
+            "type": "string"
+          },
+          "owner_name": {
+            "title": "Owner Name",
+            "type": "string"
+          },
+          "stale": {
+            "title": "Stale",
+            "type": "boolean"
+          },
+          "state": {
+            "$ref": "#/$defs/LabState"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id"
+          },
+          "team_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Name"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node_id",
+          "id",
+          "owner_id",
+          "owner_name",
+          "owner_display_name",
+          "team_id",
+          "team_name",
+          "mission_title",
+          "mission_id",
+          "generation",
+          "state",
+          "desired_state",
+          "stale",
+          "error_code",
+          "observed_at",
+          "updated_at",
+          "operator_count",
+          "desktop_enabled",
+          "completed_objectives",
+          "objective_count",
+          "earned_points"
+        ],
+        "title": "CenterLab",
+        "type": "object"
+      },
+      "LabState": {
+        "enum": [
+          "REQUESTED",
+          "QUEUED",
+          "PROVISIONING",
+          "READY",
+          "STOPPING",
+          "STOPPED",
+          "STARTING",
+          "RESETTING",
+          "DESTROYING",
+          "DESTROYED",
+          "ERROR"
+        ],
+        "title": "LabState",
+        "type": "string"
+      },
+      "SessionView": {
+        "additionalProperties": false,
+        "properties": {
+          "announcement": {
+            "maxLength": 2000,
+            "title": "Announcement",
+            "type": "string"
+          },
+          "closed": {
+            "title": "Closed",
+            "type": "boolean"
+          },
+          "day": {
+            "maximum": 8,
+            "minimum": 1,
+            "title": "Day",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "phase": {
+            "enum": [
+              "theory",
+              "solo",
+              "team",
+              "debrief"
+            ],
+            "title": "Phase",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 1,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "terminal_enabled": {
+            "title": "Terminal Enabled",
+            "type": "boolean"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "revision",
+          "day",
+          "phase",
+          "terminal_enabled",
+          "announcement",
+          "closed",
+          "id",
+          "title",
+          "updated_at"
+        ],
+        "title": "SessionView",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "capacity": {
+        "$ref": "#/$defs/CapacityView"
+      },
+      "help_count": {
+        "minimum": 0,
+        "title": "Help Count",
+        "type": "integer"
+      },
+      "lab_count": {
+        "title": "Lab Count",
+        "type": "integer"
+      },
+      "labs": {
+        "items": {
+          "$ref": "#/$defs/CenterLab"
+        },
+        "title": "Labs",
+        "type": "array"
+      },
+      "nodes": {
+        "items": {
+          "$ref": "#/$defs/CapacityView"
+        },
+        "title": "Nodes",
+        "type": "array"
+      },
+      "server_time": {
+        "format": "date-time",
+        "title": "Server Time",
+        "type": "string"
+      },
+      "session": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/SessionView"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "truncated": {
+        "title": "Truncated",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "server_time",
+      "session",
+      "labs",
+      "lab_count",
+      "truncated",
+      "help_count",
+      "capacity"
+    ],
+    "title": "CenterOverview",
+    "type": "object"
+  },
+  "CompetitionBoard": {
+    "$defs": {
+      "Standing": {
+        "additionalProperties": false,
+        "properties": {
+          "alias": {
+            "title": "Alias",
+            "type": "string"
+          },
+          "points": {
+            "title": "Points",
+            "type": "integer"
+          },
+          "rank": {
+            "title": "Rank",
+            "type": "integer"
+          },
+          "solved": {
+            "title": "Solved",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rank",
+          "alias",
+          "points",
+          "solved"
+        ],
+        "title": "Standing",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "frozen": {
+        "title": "Frozen",
+        "type": "boolean"
+      },
+      "remaining_seconds": {
+        "title": "Remaining Seconds",
+        "type": "number"
+      },
+      "server_time": {
+        "format": "date-time",
+        "title": "Server Time",
+        "type": "string"
+      },
+      "standings": {
+        "items": {
+          "$ref": "#/$defs/Standing"
+        },
+        "title": "Standings",
+        "type": "array"
+      },
+      "status": {
+        "title": "Status",
+        "type": "string"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      }
+    },
+    "required": [
+      "title",
+      "status",
+      "server_time",
+      "remaining_seconds",
+      "frozen",
+      "standings"
+    ],
+    "title": "CompetitionBoard",
+    "type": "object"
+  },
+  "CompetitionResult": {
+    "additionalProperties": false,
+    "properties": {
+      "accepted": {
+        "title": "Accepted",
+        "type": "boolean"
+      },
+      "already_completed": {
+        "title": "Already Completed",
+        "type": "boolean"
+      },
+      "points_awarded": {
+        "title": "Points Awarded",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "accepted",
+      "points_awarded",
+      "already_completed"
+    ],
+    "title": "CompetitionResult",
+    "type": "object"
+  },
+  "CompetitionView": {
+    "$defs": {
+      "Challenge": {
+        "additionalProperties": false,
+        "properties": {
+          "mission_id": {
+            "title": "Mission Id",
+            "type": "string"
+          },
+          "mission_version": {
+            "const": 1,
+            "default": 1,
+            "title": "Mission Version",
+            "type": "integer"
+          },
+          "objective_id": {
+            "title": "Objective Id",
+            "type": "string"
+          },
+          "points": {
+            "title": "Points",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_id",
+          "objective_id",
+          "title",
+          "points"
+        ],
+        "title": "Challenge",
+        "type": "object"
+      },
+      "CompetitionTeam": {
+        "additionalProperties": false,
+        "properties": {
+          "alias": {
+            "title": "Alias",
+            "type": "string"
+          },
+          "completed_challenges": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Completed Challenges",
+            "type": "array"
+          },
+          "points": {
+            "title": "Points",
+            "type": "integer"
+          },
+          "team_id": {
+            "format": "uuid",
+            "title": "Team Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "team_id",
+          "alias",
+          "completed_challenges",
+          "points"
+        ],
+        "title": "CompetitionTeam",
+        "type": "object"
+      },
+      "Standing": {
+        "additionalProperties": false,
+        "properties": {
+          "alias": {
+            "title": "Alias",
+            "type": "string"
+          },
+          "points": {
+            "title": "Points",
+            "type": "integer"
+          },
+          "rank": {
+            "title": "Rank",
+            "type": "integer"
+          },
+          "solved": {
+            "title": "Solved",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rank",
+          "alias",
+          "points",
+          "solved"
+        ],
+        "title": "Standing",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "challenges": {
+        "items": {
+          "$ref": "#/$defs/Challenge"
+        },
+        "title": "Challenges",
+        "type": "array"
+      },
+      "deadline": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Deadline"
+      },
+      "frozen": {
+        "title": "Frozen",
+        "type": "boolean"
+      },
+      "hint_cost": {
+        "const": 0,
+        "default": 0,
+        "title": "Hint Cost",
+        "type": "integer"
+      },
+      "id": {
+        "format": "uuid",
+        "title": "Id",
+        "type": "string"
+      },
+      "own_team_ids": {
+        "items": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "title": "Own Team Ids",
+        "type": "array"
+      },
+      "remaining_seconds": {
+        "title": "Remaining Seconds",
+        "type": "number"
+      },
+      "revision": {
+        "title": "Revision",
+        "type": "integer"
+      },
+      "server_time": {
+        "format": "date-time",
+        "title": "Server Time",
+        "type": "string"
+      },
+      "standings": {
+        "items": {
+          "$ref": "#/$defs/Standing"
+        },
+        "title": "Standings",
+        "type": "array"
+      },
+      "status": {
+        "enum": [
+          "draft",
+          "running",
+          "paused",
+          "ended"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      },
+      "visible_teams": {
+        "items": {
+          "$ref": "#/$defs/CompetitionTeam"
+        },
+        "title": "Visible Teams",
+        "type": "array"
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "status",
+      "revision",
+      "server_time",
+      "deadline",
+      "remaining_seconds",
+      "frozen",
+      "challenges",
+      "standings",
+      "own_team_ids",
+      "visible_teams"
+    ],
+    "title": "CompetitionView",
+    "type": "object"
+  },
+  "CourseDay": {
+    "$defs": {
+      "Lesson": {
+        "additionalProperties": false,
+        "properties": {
+          "exercise": {
+            "title": "Exercise",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "text",
+          "exercise"
+        ],
+        "title": "Lesson",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "bonus": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Bonus",
+        "type": "array"
+      },
+      "commands": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Commands",
+        "type": "array"
+      },
+      "day": {
+        "maximum": 8,
+        "minimum": 1,
+        "title": "Day",
+        "type": "integer"
+      },
+      "goals": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Goals",
+        "type": "array"
+      },
+      "lessons": {
+        "items": {
+          "$ref": "#/$defs/Lesson"
+        },
+        "title": "Lessons",
+        "type": "array"
+      },
+      "mission_id": {
+        "title": "Mission Id",
+        "type": "string"
+      },
+      "mission_version": {
+        "title": "Mission Version",
+        "type": "integer"
+      },
+      "reflection": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Reflection",
+        "type": "array"
+      },
+      "schedule": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Schedule",
+        "type": "array"
+      },
+      "summary": {
+        "title": "Summary",
+        "type": "string"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      },
+      "version": {
+        "minimum": 1,
+        "title": "Version",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "day",
+      "version",
+      "title",
+      "summary",
+      "mission_id",
+      "mission_version",
+      "goals",
+      "schedule",
+      "lessons",
+      "commands",
+      "reflection",
+      "bonus"
+    ],
+    "title": "CourseDay",
+    "type": "object"
+  },
+  "Event": {
+    "$defs": {
+      "ActionPayload": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "start",
+              "stop",
+              "reset",
+              "destroy"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "kind": {
+            "const": "lab.action_requested",
+            "title": "Kind",
+            "type": "string"
+          },
+          "requested_generation": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Requested Generation",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kind",
+          "action",
+          "requested_generation"
+        ],
+        "title": "ActionPayload",
+        "type": "object"
+      },
+      "LabState": {
+        "enum": [
+          "REQUESTED",
+          "QUEUED",
+          "PROVISIONING",
+          "READY",
+          "STOPPING",
+          "STOPPED",
+          "STARTING",
+          "RESETTING",
+          "DESTROYING",
+          "DESTROYED",
+          "ERROR"
+        ],
+        "title": "LabState",
+        "type": "string"
+      },
+      "LifecyclePayload": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "lab.lifecycle",
+            "title": "Kind",
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/$defs/LabState"
+          }
+        },
+        "required": [
+          "kind",
+          "state"
+        ],
+        "title": "LifecyclePayload",
+        "type": "object"
+      },
+      "ObjectivePayload": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "objective.completed",
+            "title": "Kind",
+            "type": "string"
+          },
+          "objective_id": {
+            "title": "Objective Id",
+            "type": "string"
+          },
+          "points_delta": {
+            "maximum": 1000,
+            "minimum": 0,
+            "title": "Points Delta",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kind",
+          "objective_id",
+          "points_delta"
+        ],
+        "title": "ObjectivePayload",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "actor_id": {
+        "format": "uuid",
+        "title": "Actor Id",
+        "type": "string"
+      },
+      "event_id": {
+        "format": "uuid",
+        "title": "Event Id",
+        "type": "string"
+      },
+      "evidence_level": {
+        "enum": [
+          "system",
+          "validated"
+        ],
+        "title": "Evidence Level",
+        "type": "string"
+      },
+      "generation": {
+        "minimum": 1,
+        "title": "Generation",
+        "type": "integer"
+      },
+      "initiator_type": {
+        "default": "system",
+        "enum": [
+          "user",
+          "system"
+        ],
+        "title": "Initiator Type",
+        "type": "string"
+      },
+      "lab_id": {
+        "format": "uuid",
+        "title": "Lab Id",
+        "type": "string"
+      },
+      "occurred_at": {
+        "format": "date-time",
+        "title": "Occurred At",
+        "type": "string"
+      },
+      "organization_id": {
+        "format": "uuid",
+        "title": "Organization Id",
+        "type": "string"
+      },
+      "payload": {
+        "discriminator": {
+          "mapping": {
+            "lab.action_requested": "#/$defs/ActionPayload",
+            "lab.lifecycle": "#/$defs/LifecyclePayload",
+            "objective.completed": "#/$defs/ObjectivePayload"
+          },
+          "propertyName": "kind"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/LifecyclePayload"
+          },
+          {
+            "$ref": "#/$defs/ObjectivePayload"
+          },
+          {
+            "$ref": "#/$defs/ActionPayload"
+          }
+        ],
+        "title": "Payload"
+      },
+      "schema_version": {
+        "const": 1,
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "source": {
+        "enum": [
+          "control",
+          "score"
+        ],
+        "title": "Source",
+        "type": "string"
+      }
+    },
+    "required": [
+      "schema_version",
+      "event_id",
+      "organization_id",
+      "lab_id",
+      "generation",
+      "actor_id",
+      "occurred_at",
+      "source",
+      "evidence_level",
+      "payload"
+    ],
+    "title": "Event",
+    "type": "object"
+  },
+  "FindingsPage": {
+    "$defs": {
+      "FindingView": {
+        "additionalProperties": false,
+        "properties": {
+          "actor_id": {
+            "format": "uuid",
+            "title": "Actor Id",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "evidence_level": {
+            "const": "submitted",
+            "default": "submitted",
+            "title": "Evidence Level",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor_id",
+          "username",
+          "body",
+          "source",
+          "created_at"
+        ],
+        "title": "FindingView",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "items": {
+        "items": {
+          "$ref": "#/$defs/FindingView"
+        },
+        "title": "Items",
+        "type": "array"
+      },
+      "next_cursor": {
+        "anyOf": [
+          {
+            "format": "uuid",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Next Cursor"
+      }
+    },
+    "required": [
+      "items",
+      "next_cursor"
+    ],
+    "title": "FindingsPage",
+    "type": "object"
+  },
+  "HelpView": {
+    "additionalProperties": false,
+    "properties": {
+      "created_at": {
+        "format": "date-time",
+        "title": "Created At",
+        "type": "string"
+      },
+      "id": {
+        "format": "uuid",
+        "title": "Id",
+        "type": "string"
+      },
+      "message": {
+        "title": "Message",
+        "type": "string"
+      },
+      "reply": {
+        "title": "Reply",
+        "type": "string"
+      },
+      "revision": {
+        "title": "Revision",
+        "type": "integer"
+      },
+      "status": {
+        "enum": [
+          "open",
+          "answered",
+          "resolved"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "updated_at": {
+        "format": "date-time",
+        "title": "Updated At",
+        "type": "string"
+      },
+      "user_id": {
+        "format": "uuid",
+        "title": "User Id",
+        "type": "string"
+      },
+      "username": {
+        "title": "Username",
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "username",
+      "user_id",
+      "message",
+      "reply",
+      "status",
+      "revision",
+      "created_at",
+      "updated_at"
+    ],
+    "title": "HelpView",
+    "type": "object"
+  },
+  "LabView": {
+    "$defs": {
+      "LabState": {
+        "enum": [
+          "REQUESTED",
+          "QUEUED",
+          "PROVISIONING",
+          "READY",
+          "STOPPING",
+          "STOPPED",
+          "STARTING",
+          "RESETTING",
+          "DESTROYING",
+          "DESTROYED",
+          "ERROR"
+        ],
+        "title": "LabState",
+        "type": "string"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "can_manage": {
+        "title": "Can Manage",
+        "type": "boolean"
+      },
+      "can_operate": {
+        "title": "Can Operate",
+        "type": "boolean"
+      },
+      "desired_state": {
+        "title": "Desired State",
+        "type": "string"
+      },
+      "desktop_enabled": {
+        "title": "Desktop Enabled",
+        "type": "boolean"
+      },
+      "error_code": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Error Code"
+      },
+      "generation": {
+        "title": "Generation",
+        "type": "integer"
+      },
+      "id": {
+        "format": "uuid",
+        "title": "Id",
+        "type": "string"
+      },
+      "last_observed_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Last Observed At"
+      },
+      "mission_id": {
+        "title": "Mission Id",
+        "type": "string"
+      },
+      "mission_version": {
+        "title": "Mission Version",
+        "type": "integer"
+      },
+      "state": {
+        "$ref": "#/$defs/LabState"
+      },
+      "target_ip": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Target Ip"
+      },
+      "team_id": {
+        "anyOf": [
+          {
+            "format": "uuid",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Team Id"
+      }
+    },
+    "required": [
+      "id",
+      "mission_id",
+      "mission_version",
+      "generation",
+      "state",
+      "desired_state",
+      "target_ip",
+      "last_observed_at",
+      "error_code",
+      "team_id",
+      "desktop_enabled",
+      "can_manage",
+      "can_operate"
+    ],
+    "title": "LabView",
+    "type": "object"
+  },
+  "Mission": {
+    "$defs": {
+      "Objective": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Description",
+            "type": "string"
+          },
+          "evidence": {
+            "const": "validated_flag",
+            "title": "Evidence",
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^[a-z][a-z0-9-]{1,47}$",
+            "title": "Id",
+            "type": "string"
+          },
+          "points": {
+            "maximum": 1000,
+            "minimum": 0,
+            "title": "Points",
+            "type": "integer"
+          },
+          "title": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "points",
+          "evidence"
+        ],
+        "title": "Objective",
+        "type": "object"
+      },
+      "Resources": {
+        "additionalProperties": false,
+        "properties": {
+          "architecture": {
+            "const": "x86_64",
+            "title": "Architecture",
+            "type": "string"
+          },
+          "egress": {
+            "const": false,
+            "title": "Egress",
+            "type": "boolean"
+          },
+          "image_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Image Sha256",
+            "type": "string"
+          },
+          "network": {
+            "const": "isolated-l2-pair-v1",
+            "title": "Network",
+            "type": "string"
+          },
+          "operator_memory_mib": {
+            "enum": [
+              1024,
+              2048
+            ],
+            "title": "Operator Memory Mib",
+            "type": "integer"
+          },
+          "operator_profile": {
+            "default": "headless",
+            "enum": [
+              "headless",
+              "desktop"
+            ],
+            "title": "Operator Profile",
+            "type": "string"
+          },
+          "operator_vcpus": {
+            "const": 1,
+            "title": "Operator Vcpus",
+            "type": "integer"
+          },
+          "target_memory_mib": {
+            "enum": [
+              768,
+              1024
+            ],
+            "title": "Target Memory Mib",
+            "type": "integer"
+          },
+          "target_vcpus": {
+            "const": 1,
+            "title": "Target Vcpus",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "architecture",
+          "operator_memory_mib",
+          "target_memory_mib",
+          "operator_vcpus",
+          "target_vcpus",
+          "image_sha256",
+          "network",
+          "egress"
+        ],
+        "title": "Resources",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "briefing": {
+        "maxLength": 10000,
+        "minLength": 1,
+        "title": "Briefing",
+        "type": "string"
+      },
+      "estimated_minutes": {
+        "maximum": 240,
+        "minimum": 1,
+        "title": "Estimated Minutes",
+        "type": "integer"
+      },
+      "hints": {
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 10,
+        "title": "Hints",
+        "type": "array"
+      },
+      "id": {
+        "pattern": "^[a-z][a-z0-9-]{1,47}$",
+        "title": "Id",
+        "type": "string"
+      },
+      "objectives": {
+        "items": {
+          "$ref": "#/$defs/Objective"
+        },
+        "maxItems": 20,
+        "minItems": 1,
+        "title": "Objectives",
+        "type": "array"
+      },
+      "resources": {
+        "$ref": "#/$defs/Resources"
+      },
+      "schema_version": {
+        "const": 1,
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "summary": {
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Summary",
+        "type": "string"
+      },
+      "title": {
+        "maxLength": 100,
+        "minLength": 1,
+        "title": "Title",
+        "type": "string"
+      },
+      "version": {
+        "minimum": 1,
+        "title": "Version",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "schema_version",
+      "id",
+      "version",
+      "title",
+      "summary",
+      "briefing",
+      "estimated_minutes",
+      "resources",
+      "objectives",
+      "hints"
+    ],
+    "title": "Mission",
+    "type": "object"
+  },
+  "Notebook": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "maxLength": 16000,
+        "title": "Body",
+        "type": "string"
+      },
+      "day": {
+        "title": "Day",
+        "type": "integer"
+      },
+      "evidence_level": {
+        "const": "submitted",
+        "default": "submitted",
+        "title": "Evidence Level",
+        "type": "string"
+      },
+      "reflection": {
+        "maxLength": 4000,
+        "title": "Reflection",
+        "type": "string"
+      },
+      "revision": {
+        "minimum": 0,
+        "title": "Revision",
+        "type": "integer"
+      },
+      "theory_read": {
+        "title": "Theory Read",
+        "type": "boolean"
+      },
+      "updated_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Updated At"
+      }
+    },
+    "required": [
+      "revision",
+      "body",
+      "reflection",
+      "theory_read",
+      "day",
+      "updated_at"
+    ],
+    "title": "Notebook",
+    "type": "object"
+  },
+  "ProgressView": {
+    "additionalProperties": false,
+    "properties": {
+      "completed_objectives": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Completed Objectives",
+        "type": "array"
+      },
+      "earned_objectives": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Earned Objectives",
+        "type": "array"
+      },
+      "total_points": {
+        "title": "Total Points",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "total_points",
+      "completed_objectives",
+      "earned_objectives"
+    ],
+    "title": "ProgressView",
+    "type": "object"
+  },
+  "ProjectorFeed": {
+    "$defs": {
+      "LabState": {
+        "enum": [
+          "REQUESTED",
+          "QUEUED",
+          "PROVISIONING",
+          "READY",
+          "STOPPING",
+          "STOPPED",
+          "STARTING",
+          "RESETTING",
+          "DESTROYING",
+          "DESTROYED",
+          "ERROR"
+        ],
+        "title": "LabState",
+        "type": "string"
+      },
+      "ProjectedLab": {
+        "additionalProperties": false,
+        "properties": {
+          "activity": {
+            "enum": [
+              "observed",
+              "quiet",
+              "unconfirmed"
+            ],
+            "title": "Activity",
+            "type": "string"
+          },
+          "alias": {
+            "title": "Alias",
+            "type": "string"
+          },
+          "completed": {
+            "title": "Completed",
+            "type": "integer"
+          },
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "objectives": {
+            "title": "Objectives",
+            "type": "integer"
+          },
+          "observation_incomplete": {
+            "title": "Observation Incomplete",
+            "type": "boolean"
+          },
+          "ordinal": {
+            "title": "Ordinal",
+            "type": "integer"
+          },
+          "points": {
+            "title": "Points",
+            "type": "integer"
+          },
+          "stale": {
+            "title": "Stale",
+            "type": "boolean"
+          },
+          "state": {
+            "$ref": "#/$defs/LabState"
+          }
+        },
+        "required": [
+          "ordinal",
+          "alias",
+          "state",
+          "stale",
+          "generation",
+          "completed",
+          "objectives",
+          "points",
+          "activity",
+          "observation_incomplete"
+        ],
+        "title": "ProjectedLab",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "day": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Day"
+      },
+      "expires_at": {
+        "format": "date-time",
+        "title": "Expires At",
+        "type": "string"
+      },
+      "labs": {
+        "items": {
+          "$ref": "#/$defs/ProjectedLab"
+        },
+        "title": "Labs",
+        "type": "array"
+      },
+      "phase": {
+        "anyOf": [
+          {
+            "enum": [
+              "theory",
+              "solo",
+              "team",
+              "debrief"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Phase"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "server_time": {
+        "format": "date-time",
+        "title": "Server Time",
+        "type": "string"
+      }
+    },
+    "required": [
+      "server_time",
+      "expires_at",
+      "day",
+      "phase",
+      "labs"
+    ],
+    "title": "ProjectorFeed",
+    "type": "object"
+  },
+  "ProjectorGrant": {
+    "additionalProperties": false,
+    "properties": {
+      "created_at": {
+        "format": "date-time",
+        "title": "Created At",
+        "type": "string"
+      },
+      "exchanged": {
+        "title": "Exchanged",
+        "type": "boolean"
+      },
+      "expires_at": {
+        "format": "date-time",
+        "title": "Expires At",
+        "type": "string"
+      },
+      "id": {
+        "format": "uuid",
+        "title": "Id",
+        "type": "string"
+      },
+      "lab_count": {
+        "title": "Lab Count",
+        "type": "integer"
+      },
+      "revoked": {
+        "title": "Revoked",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "created_at",
+      "expires_at",
+      "exchanged",
+      "revoked",
+      "lab_count"
+    ],
+    "title": "ProjectorGrant",
+    "type": "object"
+  },
+  "ProjectorLaunch": {
+    "$defs": {
+      "ProjectorGrant": {
+        "additionalProperties": false,
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "exchanged": {
+            "title": "Exchanged",
+            "type": "boolean"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "lab_count": {
+            "title": "Lab Count",
+            "type": "integer"
+          },
+          "revoked": {
+            "title": "Revoked",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "expires_at",
+          "exchanged",
+          "revoked",
+          "lab_count"
+        ],
+        "title": "ProjectorGrant",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "grant": {
+        "$ref": "#/$defs/ProjectorGrant"
+      },
+      "token": {
+        "title": "Token",
+        "type": "string"
+      }
+    },
+    "required": [
+      "grant",
+      "token"
+    ],
+    "title": "ProjectorLaunch",
+    "type": "object"
+  },
+  "ReplayLabs": {
+    "$defs": {
+      "LabState": {
+        "enum": [
+          "REQUESTED",
+          "QUEUED",
+          "PROVISIONING",
+          "READY",
+          "STOPPING",
+          "STOPPED",
+          "STARTING",
+          "RESETTING",
+          "DESTROYING",
+          "DESTROYED",
+          "ERROR"
+        ],
+        "title": "LabState",
+        "type": "string"
+      },
+      "ReplayLab": {
+        "additionalProperties": false,
+        "properties": {
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "mission_title": {
+            "title": "Mission Title",
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/$defs/LabState"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "mission_title",
+          "generation",
+          "state"
+        ],
+        "title": "ReplayLab",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "labs": {
+        "items": {
+          "$ref": "#/$defs/ReplayLab"
+        },
+        "title": "Labs",
+        "type": "array"
+      },
+      "truncated": {
+        "title": "Truncated",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "labs",
+      "truncated"
+    ],
+    "title": "ReplayLabs",
+    "type": "object"
+  },
+  "ReplayView": {
+    "$defs": {
+      "FlowWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "flows": {
+            "items": {
+              "$ref": "#/$defs/HeaderFlow"
+            },
+            "maxItems": 16,
+            "title": "Flows",
+            "type": "array"
+          },
+          "observed_at": {
+            "maximum": 4102444800,
+            "minimum": 0,
+            "title": "Observed At",
+            "type": "number"
+          },
+          "omitted_packets": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Omitted Packets",
+            "type": "integer"
+          },
+          "partial": {
+            "title": "Partial",
+            "type": "boolean"
+          },
+          "schema_version": {
+            "const": 1,
+            "default": 1,
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "sequence": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "source_sequence": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Source Sequence",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sequence",
+          "source_sequence",
+          "observed_at",
+          "flows",
+          "partial",
+          "omitted_packets"
+        ],
+        "title": "FlowWindow",
+        "type": "object"
+      },
+      "HeaderFlow": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Bytes",
+            "type": "integer"
+          },
+          "destination_port": {
+            "anyOf": [
+              {
+                "maximum": 65535,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Port"
+          },
+          "direction": {
+            "enum": [
+              "operator_to_target",
+              "target_to_operator"
+            ],
+            "title": "Direction",
+            "type": "string"
+          },
+          "dst": {
+            "maxLength": 39,
+            "title": "Dst",
+            "type": "string"
+          },
+          "packets": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Packets",
+            "type": "integer"
+          },
+          "protocol": {
+            "maximum": 255,
+            "minimum": 0,
+            "title": "Protocol",
+            "type": "integer"
+          },
+          "source_port": {
+            "anyOf": [
+              {
+                "maximum": 65535,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Port"
+          },
+          "src": {
+            "maxLength": 39,
+            "title": "Src",
+            "type": "string"
+          }
+        },
+        "required": [
+          "direction",
+          "src",
+          "dst",
+          "protocol",
+          "source_port",
+          "destination_port",
+          "packets",
+          "bytes"
+        ],
+        "title": "HeaderFlow",
+        "type": "object"
+      },
+      "ReplayItem": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "format": "uuid",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "evidence_level": {
+            "enum": [
+              "system",
+              "validated",
+              "observed"
+            ],
+            "title": "Evidence Level",
+            "type": "string"
+          },
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "occurred_at": {
+            "format": "date-time",
+            "title": "Occurred At",
+            "type": "string"
+          },
+          "operator_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Operator Number"
+          },
+          "receipt_basis": {
+            "enum": [
+              "recorded",
+              "transaction_start_legacy"
+            ],
+            "title": "Receipt Basis",
+            "type": "string"
+          },
+          "received_at": {
+            "format": "date-time",
+            "title": "Received At",
+            "type": "string"
+          },
+          "schema_version": {
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "source": {
+            "enum": [
+              "control",
+              "score",
+              "lab_link"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "window": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/FlowWindow"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "event_id",
+          "schema_version",
+          "generation",
+          "source",
+          "evidence_level",
+          "occurred_at",
+          "received_at",
+          "receipt_basis",
+          "summary"
+        ],
+        "title": "ReplayItem",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "domain_limit": {
+        "const": 100,
+        "default": 100,
+        "title": "Domain Limit",
+        "type": "integer"
+      },
+      "domain_truncated": {
+        "title": "Domain Truncated",
+        "type": "boolean"
+      },
+      "events": {
+        "items": {
+          "$ref": "#/$defs/ReplayItem"
+        },
+        "title": "Events",
+        "type": "array"
+      },
+      "flow_limit": {
+        "const": 100,
+        "default": 100,
+        "title": "Flow Limit",
+        "type": "integer"
+      },
+      "flow_retention_hours": {
+        "const": 24,
+        "default": 24,
+        "title": "Flow Retention Hours",
+        "type": "integer"
+      },
+      "flow_truncated": {
+        "title": "Flow Truncated",
+        "type": "boolean"
+      },
+      "from_time": {
+        "format": "date-time",
+        "title": "From Time",
+        "type": "string"
+      },
+      "generation": {
+        "title": "Generation",
+        "type": "integer"
+      },
+      "generations": {
+        "items": {
+          "type": "integer"
+        },
+        "title": "Generations",
+        "type": "array"
+      },
+      "historical": {
+        "const": true,
+        "default": true,
+        "title": "Historical",
+        "type": "boolean"
+      },
+      "lab_id": {
+        "format": "uuid",
+        "title": "Lab Id",
+        "type": "string"
+      },
+      "to_time": {
+        "format": "date-time",
+        "title": "To Time",
+        "type": "string"
+      }
+    },
+    "required": [
+      "lab_id",
+      "generation",
+      "generations",
+      "from_time",
+      "to_time",
+      "events",
+      "domain_truncated",
+      "flow_truncated"
+    ],
+    "title": "ReplayView",
+    "type": "object"
+  },
+  "SessionView": {
+    "additionalProperties": false,
+    "properties": {
+      "announcement": {
+        "maxLength": 2000,
+        "title": "Announcement",
+        "type": "string"
+      },
+      "closed": {
+        "title": "Closed",
+        "type": "boolean"
+      },
+      "day": {
+        "maximum": 8,
+        "minimum": 1,
+        "title": "Day",
+        "type": "integer"
+      },
+      "id": {
+        "format": "uuid",
+        "title": "Id",
+        "type": "string"
+      },
+      "phase": {
+        "enum": [
+          "theory",
+          "solo",
+          "team",
+          "debrief"
+        ],
+        "title": "Phase",
+        "type": "string"
+      },
+      "revision": {
+        "minimum": 1,
+        "title": "Revision",
+        "type": "integer"
+      },
+      "terminal_enabled": {
+        "title": "Terminal Enabled",
+        "type": "boolean"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      },
+      "updated_at": {
+        "format": "date-time",
+        "title": "Updated At",
+        "type": "string"
+      }
+    },
+    "required": [
+      "revision",
+      "day",
+      "phase",
+      "terminal_enabled",
+      "announcement",
+      "closed",
+      "id",
+      "title",
+      "updated_at"
+    ],
+    "title": "SessionView",
+    "type": "object"
+  },
+  "StudentRoster": {
+    "$defs": {
+      "AssignmentView": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "completed": {
+            "title": "Completed",
+            "type": "boolean"
+          },
+          "earned_points": {
+            "title": "Earned Points",
+            "type": "integer"
+          },
+          "estimated_minutes": {
+            "title": "Estimated Minutes",
+            "type": "integer"
+          },
+          "mission_id": {
+            "title": "Mission Id",
+            "type": "string"
+          },
+          "mission_version": {
+            "title": "Mission Version",
+            "type": "integer"
+          },
+          "release_source": {
+            "enum": [
+              "class",
+              "individual",
+              "teacher",
+              "locked"
+            ],
+            "title": "Release Source",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_id",
+          "mission_version",
+          "title",
+          "summary",
+          "estimated_minutes",
+          "available",
+          "release_source",
+          "completed",
+          "earned_points"
+        ],
+        "title": "AssignmentView",
+        "type": "object"
+      },
+      "TeacherStudent": {
+        "additionalProperties": false,
+        "properties": {
+          "alias_revision": {
+            "title": "Alias Revision",
+            "type": "integer"
+          },
+          "assignments": {
+            "items": {
+              "$ref": "#/$defs/AssignmentView"
+            },
+            "title": "Assignments",
+            "type": "array"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "teacher_alias": {
+            "title": "Teacher Alias",
+            "type": "string"
+          },
+          "user_id": {
+            "format": "uuid",
+            "title": "User Id",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "username",
+          "display_name",
+          "teacher_alias",
+          "alias_revision",
+          "assignments"
+        ],
+        "title": "TeacherStudent",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "students": {
+        "items": {
+          "$ref": "#/$defs/TeacherStudent"
+        },
+        "title": "Students",
+        "type": "array"
+      },
+      "truncated": {
+        "title": "Truncated",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "students",
+      "truncated"
+    ],
+    "title": "StudentRoster",
+    "type": "object"
+  },
+  "TeamNotebook": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "maxLength": 16000,
+        "title": "Body",
+        "type": "string"
+      },
+      "evidence_level": {
+        "const": "submitted",
+        "default": "submitted",
+        "title": "Evidence Level",
+        "type": "string"
+      },
+      "revision": {
+        "minimum": 0,
+        "title": "Revision",
+        "type": "integer"
+      },
+      "updated_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Updated At"
+      },
+      "updated_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Updated By"
+      }
+    },
+    "required": [
+      "revision",
+      "body",
+      "updated_by",
+      "updated_at"
+    ],
+    "title": "TeamNotebook",
+    "type": "object"
+  },
+  "TeamView": {
+    "$defs": {
+      "TeamMemberView": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "title": "Active",
+            "type": "boolean"
+          },
+          "role": {
+            "enum": [
+              "coordinator",
+              "analyst",
+              "operator",
+              "reporter"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "user_id": {
+            "format": "uuid",
+            "title": "User Id",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "role",
+          "username",
+          "active"
+        ],
+        "title": "TeamMemberView",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "created_by": {
+        "format": "uuid",
+        "title": "Created By",
+        "type": "string"
+      },
+      "id": {
+        "format": "uuid",
+        "title": "Id",
+        "type": "string"
+      },
+      "members": {
+        "items": {
+          "$ref": "#/$defs/TeamMemberView"
+        },
+        "title": "Members",
+        "type": "array"
+      },
+      "name": {
+        "title": "Name",
+        "type": "string"
+      },
+      "revision": {
+        "title": "Revision",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "revision",
+      "created_by",
+      "members"
+    ],
+    "title": "TeamView",
+    "type": "object"
+  },
+  "TrafficView": {
+    "$defs": {
+      "CaptureStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Bytes",
+            "type": "integer"
+          },
+          "connected": {
+            "title": "Connected",
+            "type": "boolean"
+          },
+          "epoch": {
+            "format": "uuid",
+            "title": "Epoch",
+            "type": "string"
+          },
+          "flow_overflow": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Flow Overflow",
+            "type": "integer"
+          },
+          "last_window": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Last Window",
+            "type": "integer"
+          },
+          "metadata_dropped": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Metadata Dropped",
+            "type": "integer"
+          },
+          "observed_at": {
+            "maximum": 4102444800,
+            "minimum": 0,
+            "title": "Observed At",
+            "type": "number"
+          },
+          "operator_user_id": {
+            "format": "uuid",
+            "title": "Operator User Id",
+            "type": "string"
+          },
+          "packets": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Packets",
+            "type": "integer"
+          },
+          "partial_windows": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Partial Windows",
+            "type": "integer"
+          },
+          "poll_missed_windows": {
+            "default": 0,
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Poll Missed Windows",
+            "type": "integer"
+          },
+          "ring_overwrites": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Ring Overwrites",
+            "type": "integer"
+          },
+          "sequence_gaps": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Sequence Gaps",
+            "type": "integer"
+          },
+          "unknown_packets": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Unknown Packets",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "operator_user_id",
+          "epoch",
+          "connected",
+          "observed_at",
+          "last_window",
+          "metadata_dropped",
+          "unknown_packets",
+          "flow_overflow",
+          "sequence_gaps",
+          "partial_windows",
+          "ring_overwrites",
+          "packets",
+          "bytes"
+        ],
+        "title": "CaptureStatus",
+        "type": "object"
+      },
+      "FlowWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "flows": {
+            "items": {
+              "$ref": "#/$defs/HeaderFlow"
+            },
+            "maxItems": 16,
+            "title": "Flows",
+            "type": "array"
+          },
+          "observed_at": {
+            "maximum": 4102444800,
+            "minimum": 0,
+            "title": "Observed At",
+            "type": "number"
+          },
+          "omitted_packets": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "title": "Omitted Packets",
+            "type": "integer"
+          },
+          "partial": {
+            "title": "Partial",
+            "type": "boolean"
+          },
+          "schema_version": {
+            "const": 1,
+            "default": 1,
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "sequence": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "source_sequence": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Source Sequence",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sequence",
+          "source_sequence",
+          "observed_at",
+          "flows",
+          "partial",
+          "omitted_packets"
+        ],
+        "title": "FlowWindow",
+        "type": "object"
+      },
+      "HeaderFlow": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Bytes",
+            "type": "integer"
+          },
+          "destination_port": {
+            "anyOf": [
+              {
+                "maximum": 65535,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Port"
+          },
+          "direction": {
+            "enum": [
+              "operator_to_target",
+              "target_to_operator"
+            ],
+            "title": "Direction",
+            "type": "string"
+          },
+          "dst": {
+            "maxLength": 39,
+            "title": "Dst",
+            "type": "string"
+          },
+          "packets": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "title": "Packets",
+            "type": "integer"
+          },
+          "protocol": {
+            "maximum": 255,
+            "minimum": 0,
+            "title": "Protocol",
+            "type": "integer"
+          },
+          "source_port": {
+            "anyOf": [
+              {
+                "maximum": 65535,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Port"
+          },
+          "src": {
+            "maxLength": 39,
+            "title": "Src",
+            "type": "string"
+          }
+        },
+        "required": [
+          "direction",
+          "src",
+          "dst",
+          "protocol",
+          "source_port",
+          "destination_port",
+          "packets",
+          "bytes"
+        ],
+        "title": "HeaderFlow",
+        "type": "object"
+      },
+      "TrafficEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "epoch": {
+            "format": "uuid",
+            "title": "Epoch",
+            "type": "string"
+          },
+          "event_id": {
+            "format": "uuid",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "evidence_level": {
+            "const": "observed",
+            "default": "observed",
+            "title": "Evidence Level",
+            "type": "string"
+          },
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "lab_id": {
+            "format": "uuid",
+            "title": "Lab Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "operator_user_id": {
+            "format": "uuid",
+            "title": "Operator User Id",
+            "type": "string"
+          },
+          "received_at": {
+            "format": "date-time",
+            "title": "Received At",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": 1,
+            "default": 1,
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "source": {
+            "const": "lab_link",
+            "default": "lab_link",
+            "title": "Source",
+            "type": "string"
+          },
+          "window": {
+            "$ref": "#/$defs/FlowWindow"
+          }
+        },
+        "required": [
+          "event_id",
+          "sequence",
+          "lab_id",
+          "generation",
+          "operator_user_id",
+          "epoch",
+          "observed_at",
+          "received_at",
+          "window"
+        ],
+        "title": "TrafficEvent",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "captures": {
+        "items": {
+          "$ref": "#/$defs/CaptureStatus"
+        },
+        "title": "Captures",
+        "type": "array"
+      },
+      "events": {
+        "items": {
+          "$ref": "#/$defs/TrafficEvent"
+        },
+        "title": "Events",
+        "type": "array"
+      },
+      "generation": {
+        "title": "Generation",
+        "type": "integer"
+      },
+      "lab_id": {
+        "format": "uuid",
+        "title": "Lab Id",
+        "type": "string"
+      },
+      "per_lab_limit": {
+        "const": 20000,
+        "default": 20000,
+        "title": "Per Lab Limit",
+        "type": "integer"
+      },
+      "received_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Received At"
+      },
+      "retention_hours": {
+        "const": 24,
+        "default": 24,
+        "title": "Retention Hours",
+        "type": "integer"
+      },
+      "stale": {
+        "title": "Stale",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "lab_id",
+      "generation",
+      "stale",
+      "received_at",
+      "captures",
+      "events"
+    ],
+    "title": "TrafficView",
+    "type": "object"
+  },
+  "UserView": {
+    "properties": {
+      "csrf_token": {
+        "title": "Csrf Token",
+        "type": "string"
+      },
+      "organization_id": {
+        "format": "uuid",
+        "title": "Organization Id",
+        "type": "string"
+      },
+      "role": {
+        "enum": [
+          "student",
+          "teacher"
+        ],
+        "title": "Role",
+        "type": "string"
+      },
+      "user_id": {
+        "format": "uuid",
+        "title": "User Id",
+        "type": "string"
+      },
+      "username": {
+        "title": "Username",
+        "type": "string"
+      }
+    },
+    "required": [
+      "user_id",
+      "organization_id",
+      "username",
+      "role",
+      "csrf_token"
+    ],
+    "title": "UserView",
+    "type": "object"
+  }
+}

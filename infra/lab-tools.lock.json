@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "guest": "ubuntu-24.04-amd64",
+  "packages": [
+    {
+      "name": "libblas3",
+      "version": "3.12.0-3build1.1",
+      "sha256": "1b0ef0ad0893ff77bf7d5ab75723771788e16137ea1efde557dbac7b7b83a758"
+    },
+    {
+      "name": "liblinear4",
+      "version": "2.3.0+dfsg-5build1",
+      "sha256": "a4cc2c6e1f8ceefc1ea85a52b1481e6c01f4d32dcef5d2e5bcb42ac0587cbf6f"
+    },
+    {
+      "name": "liblua5.4-0",
+      "version": "5.4.6-3build2",
+      "sha256": "6a520259e5b06e86191a25af6d448387cdd2b3d291a0aa956ce272e84d071260"
+    },
+    {
+      "name": "libssh2-1t64",
+      "version": "1.11.0-4.1ubuntu0.24.04.4",
+      "sha256": "c3008467513498b6db729b142ea01d766379797e67f9b9348c131d132678253c"
+    },
+    {
+      "name": "nmap-common",
+      "version": "7.94+git20230807.3be01efb1+dfsg-3build2",
+      "sha256": "127919785faa2889d60075503fcbd747092795d4ab173f35d6c388f56a77be1c"
+    },
+    {
+      "name": "nmap",
+      "version": "7.94+git20230807.3be01efb1+dfsg-3build2",
+      "sha256": "0ac014b6236e98cc004982ef288e32d3e3bdce6122cbdac55bb530ec8907f666"
+    }
+  ]
+}

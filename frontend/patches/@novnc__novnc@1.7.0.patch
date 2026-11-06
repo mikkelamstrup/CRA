@@ -1,0 +1,328 @@
+diff --git a/core/display.js b/core/display.js
+index 4efd6f4b97dfda3ab450723ff8c722c8258d60fc..48b5ea3bce78adb71d0662cfdac89773bdfc3972 100644
+--- a/core/display.js
++++ b/core/display.js
+@@ -480,6 +480,7 @@ export default class Display {
+     }
+ 
+     _renderQPush(action) {
++        if (this._renderQ.length >= 128) { throw new Error("CRA render queue limit"); }
+         this._renderQ.push(action);
+         if (this._renderQ.length === 1) {
+             // If this can be rendered immediately it will be, otherwise
+diff --git a/core/rfb.js b/core/rfb.js
+index 80011e4a10203806f14df1ffc3b8425861a965a7..1fe568f1749499f0f8666c7907365e6e6295f33e 100644
+--- a/core/rfb.js
++++ b/core/rfb.js
+@@ -498,6 +498,8 @@ export default class RFB extends EventTargetMixin {
+     }
+ 
+     clipboardPasteFrom(text) {
++        // CRA: clipboard exchange is intentionally unavailable.
++        return;
+         if (this._rfbConnectionState !== 'connected' || this._viewOnly) { return; }
+ 
+         if (this._clipboardServerCapabilitiesFormats[extendedClipboardFormatText] &&
+@@ -2163,6 +2165,7 @@ export default class RFB extends EventTargetMixin {
+ 
+         /* Connection name/title */
+         const nameLength = this._sock.rQshift32();
++        if (width < 1 || height < 1 || width > 1920 || height > 1080 || nameLength > 4096) { return this._fail("Desktop profile limit"); }
+         if (this._sock.rQwait('server init name', nameLength, 24)) { return false; }
+         let name = this._sock.rQshiftStr(nameLength);
+         name = decodeUTF8(name, true);
+@@ -2226,47 +2229,8 @@ export default class RFB extends EventTargetMixin {
+     }
+ 
+     _sendEncodings() {
+-        const encs = [];
+-
+-        // In preference order
+-        encs.push(encodings.encodingCopyRect);
+-        // Only supported with full depth support
+-        if (this._fbDepth == 24) {
+-            if (supportsWebCodecsH264Decode) {
+-                encs.push(encodings.encodingH264);
+-            }
+-            encs.push(encodings.encodingTight);
+-            encs.push(encodings.encodingTightPNG);
+-            encs.push(encodings.encodingZRLE);
+-            encs.push(encodings.encodingJPEG);
+-            encs.push(encodings.encodingHextile);
+-            encs.push(encodings.encodingRRE);
+-            encs.push(encodings.encodingZlib);
+-        }
+-        encs.push(encodings.encodingRaw);
+-
+-        // Psuedo-encoding settings
+-        encs.push(encodings.pseudoEncodingQualityLevel0 + this._qualityLevel);
+-        encs.push(encodings.pseudoEncodingCompressLevel0 + this._compressionLevel);
+-
+-        encs.push(encodings.pseudoEncodingDesktopSize);
+-        encs.push(encodings.pseudoEncodingLastRect);
+-        encs.push(encodings.pseudoEncodingQEMUExtendedKeyEvent);
+-        encs.push(encodings.pseudoEncodingQEMULedEvent);
+-        encs.push(encodings.pseudoEncodingExtendedDesktopSize);
+-        encs.push(encodings.pseudoEncodingXvp);
+-        encs.push(encodings.pseudoEncodingFence);
+-        encs.push(encodings.pseudoEncodingContinuousUpdates);
+-        encs.push(encodings.pseudoEncodingDesktopName);
+-        encs.push(encodings.pseudoEncodingExtendedClipboard);
+-        encs.push(encodings.pseudoEncodingExtendedMouseButtons);
+-
+-        if (this._fbDepth == 24) {
+-            encs.push(encodings.pseudoEncodingVMwareCursor);
+-            encs.push(encodings.pseudoEncodingCursor);
+-        }
+-
+-        RFB.messages.clientEncodings(this._sock, encs);
++        // CRA local-network profile: bounded, lossless decoders only. No image/video inflation.
++        RFB.messages.clientEncodings(this._sock, [1, 5, 0, -223, -224, -239, -258, -307, -308, -316]);
+     }
+ 
+     /* RFB protocol initialization states:
+@@ -2324,170 +2288,13 @@ export default class RFB extends EventTargetMixin {
+     }
+ 
+     _handleServerCutText() {
+-        Log.Debug("ServerCutText");
+-
++        // CRA: discard bounded clipboard frames without decoding, inflating or dispatching.
+         if (this._sock.rQwait("ServerCutText header", 7, 1)) { return false; }
+-
+-        this._sock.rQskipBytes(3);  // Padding
+-
+-        let length = this._sock.rQshift32();
+-        length = toSigned32bit(length);
+-
+-        if (this._sock.rQwait("ServerCutText content", Math.abs(length), 8)) { return false; }
+-
+-        if (length >= 0) {
+-            //Standard msg
+-            const text = this._sock.rQshiftStr(length);
+-            if (this._viewOnly) {
+-                return true;
+-            }
+-
+-            this.dispatchEvent(new CustomEvent(
+-                "clipboard",
+-                { detail: { text: text } }));
+-
+-        } else {
+-            //Extended msg.
+-            length = Math.abs(length);
+-            const flags = this._sock.rQshift32();
+-            let formats = flags & 0x0000FFFF;
+-            let actions = flags & 0xFF000000;
+-
+-            let isCaps = (!!(actions & extendedClipboardActionCaps));
+-            if (isCaps) {
+-                this._clipboardServerCapabilitiesFormats = {};
+-                this._clipboardServerCapabilitiesActions = {};
+-
+-                // Update our server capabilities for Formats
+-                for (let i = 0; i <= 15; i++) {
+-                    let index = 1 << i;
+-
+-                    // Check if format flag is set.
+-                    if ((formats & index)) {
+-                        this._clipboardServerCapabilitiesFormats[index] = true;
+-                        // We don't send unsolicited clipboard, so we
+-                        // ignore the size
+-                        this._sock.rQshift32();
+-                    }
+-                }
+-
+-                // Update our server capabilities for Actions
+-                for (let i = 24; i <= 31; i++) {
+-                    let index = 1 << i;
+-                    this._clipboardServerCapabilitiesActions[index] = !!(actions & index);
+-                }
+-
+-                /*  Caps handling done, send caps with the clients
+-                    capabilities set as a response */
+-                let clientActions = [
+-                    extendedClipboardActionCaps,
+-                    extendedClipboardActionRequest,
+-                    extendedClipboardActionPeek,
+-                    extendedClipboardActionNotify,
+-                    extendedClipboardActionProvide
+-                ];
+-                RFB.messages.extendedClipboardCaps(this._sock, clientActions, {extendedClipboardFormatText: 0});
+-
+-            } else if (actions === extendedClipboardActionRequest) {
+-                if (this._viewOnly) {
+-                    return true;
+-                }
+-
+-                // Check if server has told us it can handle Provide and there is clipboard data to send.
+-                if (this._clipboardText != null &&
+-                    this._clipboardServerCapabilitiesActions[extendedClipboardActionProvide]) {
+-
+-                    if (formats & extendedClipboardFormatText) {
+-                        RFB.messages.extendedClipboardProvide(this._sock, [extendedClipboardFormatText], [this._clipboardText]);
+-                    }
+-                }
+-
+-            } else if (actions === extendedClipboardActionPeek) {
+-                if (this._viewOnly) {
+-                    return true;
+-                }
+-
+-                if (this._clipboardServerCapabilitiesActions[extendedClipboardActionNotify]) {
+-
+-                    if (this._clipboardText != null) {
+-                        RFB.messages.extendedClipboardNotify(this._sock, [extendedClipboardFormatText]);
+-                    } else {
+-                        RFB.messages.extendedClipboardNotify(this._sock, []);
+-                    }
+-                }
+-
+-            } else if (actions === extendedClipboardActionNotify) {
+-                if (this._viewOnly) {
+-                    return true;
+-                }
+-
+-                if (this._clipboardServerCapabilitiesActions[extendedClipboardActionRequest]) {
+-
+-                    if (formats & extendedClipboardFormatText) {
+-                        RFB.messages.extendedClipboardRequest(this._sock, [extendedClipboardFormatText]);
+-                    }
+-                }
+-
+-            } else if (actions === extendedClipboardActionProvide) {
+-                if (this._viewOnly) {
+-                    return true;
+-                }
+-
+-                if (!(formats & extendedClipboardFormatText)) {
+-                    return true;
+-                }
+-                // Ignore what we had in our clipboard client side.
+-                this._clipboardText = null;
+-
+-                // FIXME: Should probably verify that this data was actually requested
+-                let zlibStream = this._sock.rQshiftBytes(length - 4);
+-                let streamInflator = new Inflator();
+-                let textData = null;
+-
+-                streamInflator.setInput(zlibStream);
+-                for (let i = 0; i <= 15; i++) {
+-                    let format = 1 << i;
+-
+-                    if (formats & format) {
+-
+-                        let size = 0x00;
+-                        let sizeArray = streamInflator.inflate(4);
+-
+-                        size |= (sizeArray[0] << 24);
+-                        size |= (sizeArray[1] << 16);
+-                        size |= (sizeArray[2] << 8);
+-                        size |= (sizeArray[3]);
+-                        let chunk = streamInflator.inflate(size);
+-
+-                        if (format === extendedClipboardFormatText) {
+-                            textData = chunk;
+-                        }
+-                    }
+-                }
+-                streamInflator.setInput(null);
+-
+-                if (textData !== null) {
+-                    let tmpText = "";
+-                    for (let i = 0; i < textData.length; i++) {
+-                        tmpText += String.fromCharCode(textData[i]);
+-                    }
+-                    textData = tmpText;
+-
+-                    textData = decodeUTF8(textData);
+-                    if ((textData.length > 0) && "\0" === textData.charAt(textData.length - 1)) {
+-                        textData = textData.slice(0, -1);
+-                    }
+-
+-                    textData = textData.replaceAll("\r\n", "\n");
+-
+-                    this.dispatchEvent(new CustomEvent(
+-                        "clipboard",
+-                        { detail: { text: textData } }));
+-                }
+-            } else {
+-                return this._fail("Unexpected action in extended clipboard message: " + actions);
+-            }
+-        }
++        this._sock.rQskipBytes(3);
++        const length = Math.abs(toSigned32bit(this._sock.rQshift32()));
++        if (length > 65536) { return this._fail("Clipboard frame limit"); }
++        if (this._sock.rQwait("ServerCutText content", length, 8)) { return false; }
++        this._sock.rQskipBytes(length);
+         return true;
+     }
+ 
+@@ -2619,6 +2426,7 @@ export default class RFB extends EventTargetMixin {
+             if (this._sock.rQwait("FBU header", 3, 1)) { return false; }
+             this._sock.rQskipBytes(1);  // Padding
+             this._FBU.rects = this._sock.rQshift16();
++            this._craRectCount = 0;
+ 
+             // Make sure the previous frame is fully rendered first
+             // to avoid building up an excessive queue
+@@ -2648,6 +2456,8 @@ export default class RFB extends EventTargetMixin {
+                 this._FBU.encoding = this._sock.rQshift32();
+                 /* Encodings are signed */
+                 this._FBU.encoding >>= 0;
++                if (this._FBU.width > 1920 || this._FBU.height > 1080) { return this._fail("Rectangle outside CRA profile"); }
++                if (++this._craRectCount > 4096) { return this._fail("Frame rectangle limit"); }
+             }
+ 
+             if (!this._handleRect()) {
+@@ -2664,6 +2474,7 @@ export default class RFB extends EventTargetMixin {
+     }
+ 
+     _handleRect() {
++        if (![0, 1, 5, -223, -224, -239, -258, -307, -308, -316].includes(this._FBU.encoding)) { return this._fail("Encoding outside CRA profile"); }
+         switch (this._FBU.encoding) {
+             case encodings.pseudoEncodingLastRect:
+                 this._FBU.rects = 1; // Will be decreased when we return
+@@ -2860,6 +2671,7 @@ export default class RFB extends EventTargetMixin {
+         }
+ 
+         let length = this._sock.rQshift32();
++        if (length > 4096) { return this._fail("Desktop name limit"); }
+ 
+         if (this._sock.rQwait("DesktopName", length, 4)) {
+             return false;
+@@ -3001,6 +2813,7 @@ export default class RFB extends EventTargetMixin {
+ 
+     // Handle resize-messages from the server
+     _resize(width, height) {
++        if (width < 1 || height < 1 || width > 1920 || height > 1080) { throw new Error("Desktop dimensions exceed CRA profile"); }
+         this._fbWidth = width;
+         this._fbHeight = height;
+ 
+diff --git a/core/util/logging.js b/core/util/logging.js
+index 0db083856e7c7356888e8c059904be2680d22be5..b261c172fa4ababb55f7b89963c92c00605b60cf 100644
+--- a/core/util/logging.js
++++ b/core/util/logging.js
+@@ -10,7 +10,8 @@
+  * Logging/debug routines
+  */
+ 
+-let _logLevel = 'warn';
++// CRA: remote server text must not be written to browser logs.
++let _logLevel = 'none';
+ 
+ let Debug = () => {};
+ let Info = () => {};
+diff --git a/core/websock.js b/core/websock.js
+index ee8a4bc42819ca0a9f55472ccc29bfd1f25c8887..f7d44535c44d94eba7afb2a2f8c2ce2df2c01a76 100644
+--- a/core/websock.js
++++ b/core/websock.js
+@@ -17,7 +17,7 @@ import * as Log from './util/logging.js';
+ // this has performance issues in some versions Chromium, and
+ // doesn't gain a tremendous amount of performance increase in Firefox
+ // at the moment.  It may be valuable to turn it on in the future.
+-const MAX_RQ_GROW_SIZE = 40 * 1024 * 1024;  // 40 MiB
++const MAX_RQ_GROW_SIZE = 8 * 1024 * 1024;  // CRA: 8 MiB maximum receive queue
+ 
+ // Constants pulled from RTCDataChannelState enum
+ // https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/readyState#RTCDataChannelState_enum

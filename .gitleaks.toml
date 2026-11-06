@@ -1,0 +1,10 @@
+title = "CRA publication scan"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Public upstream libvirt signing-key fingerprint (not a secret)"
+condition = "AND"
+paths = ['''(^|/)infra/libvirt\.lock\.json$''']
+regexTarget = "secret"
+regexes = ['''^453B65310595562855471199CA68BE8010084C9C$''']

@@ -1,0 +1,15 @@
+[Unit]
+Description=Cyber Range Academy HTTP and WebSocket edge
+After=cra-api.service cra-relay.service
+[Service]
+Type=forking
+PIDFile=/run/cra-nginx.pid
+ExecStartPre=/usr/sbin/nginx -t -c /etc/nginx/cra-nginx.conf
+ExecStart=/usr/sbin/nginx -c /etc/nginx/cra-nginx.conf
+ExecReload=/usr/sbin/nginx -c /etc/nginx/cra-nginx.conf -s reload
+ExecStop=/usr/sbin/nginx -c /etc/nginx/cra-nginx.conf -s quit
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+[Install]
+WantedBy=multi-user.target

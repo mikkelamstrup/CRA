@@ -1,0 +1,19 @@
+{
+  "fixture": true,
+  "schema_version": 1,
+  "event_id": "synthetic-example-event-001",
+  "type": "objective.completed",
+  "organization_id": "demo-org",
+  "class_id": "demo-class",
+  "lab_session_id": "demo-lab",
+  "generation": 1,
+  "actor_id": "demo-operator",
+  "observed_at": "2026-10-09T08:00:00Z",
+  "received_at": "2026-10-09T08:00:00Z",
+  "source": "score-service",
+  "evidence_level": "validated",
+  "payload": {
+    "objective_id": "identify-http",
+    "points_delta": 100
+  }
+}

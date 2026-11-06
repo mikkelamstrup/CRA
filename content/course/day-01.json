@@ -1,0 +1,64 @@
+{
+  "day": 1,
+  "version": 1,
+  "title": "First Contact · Find vej i Linux",
+  "summary": "Lær at undersøge, dokumentere og forklare fund i et rigtigt filsystem. Du arbejder for det fiktive beredskab Nordlys.",
+  "mission_id": "first-files",
+  "mission_version": 1,
+  "goals": [
+    "Forklar hvilket scope du har tilladelse til at undersøge.",
+    "Navigér med absolutte og relative stier, og find relevant indhold i filer.",
+    "Skeln mellem en observation, en kilde og din fortolkning."
+  ],
+  "schedule": [
+    "Lektion 1 · fælles teori og demonstration",
+    "Lektion 2 · navigér og læs README",
+    "Lektion 3 · søg i journal og arkiv",
+    "Lektion 4 · aflever flag og dokumentér din metode",
+    "Lektion 5–6 · sammenhold fund og forklar kommandoer i hold",
+    "Lektion 7 · efterprøv hinandens forklaring og fælles debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / Tilladelse kommer først",
+      "text": "Et øvelseslab giver dig et klart afgrænset område at undersøge. Det giver ikke tilladelse til at scanne skolen, din Mac, andre elevers labs eller internettet. I dag arbejder du i /home/cra/academy. Et flag er en kvittering for, at du fandt en bestemt oplysning; det beviser ikke hele din forståelse. Gem derfor også dine observationer og forklaringer.",
+      "exercise": "Skriv med egne ord i notesbogen, hvad du må undersøge, og hvad der er uden for scope."
+    },
+    {
+      "title": "02 / Hvor er jeg?",
+      "text": "pwd viser din aktuelle mappe. ls viser dens indhold; ls -la viser også skjulte navne og rettigheder. cd skifter mappe. En absolut sti starter med /; en relativ sti starter fra din aktuelle mappe. .. betyder mappen over, og ~ betyder din hjemmemappe. Linux skelner mellem store og små bogstaver. Tab kan fuldføre et navn.",
+      "exercise": "Kør pwd, cd /home/cra/academy og ls -la. Gå ind i journal og tilbage med cd .. (to punktummer). Forklar forskellen på journal/events.log og /home/cra/academy/journal/events.log."
+    },
+    {
+      "title": "03 / Læs og søg",
+      "text": "cat viser en kort fil. less lader dig bladre i en lang fil; q afslutter og / søger. grep finder linjer med et mønster. find søger efter filer og mapper. Sæt mønstre i anførselstegn, så shellen ikke udvider dem, før værktøjet får dem. Kommando --help forklarer mulighederne. En pipe | sender tekstoutput videre til næste program.",
+      "exercise": "Læs README.txt. Prøv grep 'NL-104' journal/events.log og find . -name '*.txt'. Find den rapport journalen henviser til; læs den og sammenhold hændelsesnummeret."
+    },
+    {
+      "title": "04 / Fra fund til forklaring",
+      "text": "Et godt fund har en kilde, en observation og en afgrænset konklusion. Skriv for eksempel hvilken fil du læste, hvilken hændelse den omtaler og hvorfor du mener, den er relevant. En enkelt rapport kan være forkert; dokumentér hvad du ikke kan afgøre. Notesbogen gemmes adskilt fra VM-filerne, så en nulstilling af labbet ikke sletter din refleksion.",
+      "exercise": "Aflever flaget fra den relevante rapport. Skriv derefter din fremgangsmåde uden at kopiere selve flaget ind i notesbogen."
+    }
+  ],
+  "commands": [
+    "pwd",
+    "ls -la",
+    "cd",
+    "cat",
+    "less (q afslutter)",
+    "grep",
+    "find",
+    "--help",
+    "|"
+  ],
+  "reflection": [
+    "Hvilken kommando hjalp dig mest, og hvad gjorde den?",
+    "Hvilken fil er din kilde, og hvad kan den faktisk bevise?",
+    "Hvad ville du gøre anderledes næste gang?"
+  ],
+  "bonus": [
+    "Find alle journalens hændelsesnumre uden at ændre filerne.",
+    "Sammenlign en søgning på et filnavn med en søgning inde i en fil.",
+    "Forklar for en makker hvordan en forkert aktuel mappe kan give fejlen No such file or directory."
+  ]
+}

@@ -1,0 +1,51 @@
+# DESIGN EXAMPLE ONLY. No mission parser or images are included in this pack.
+# M1/M2 must validate and implement this format before it can be executed.
+schema_version: 1
+id: network-recon-01
+version: 0.1.0-draft
+locale: da-DK
+course_day: 2
+modes: [solo, team]
+learning_objectives:
+  - identify-an-authorized-host
+  - distinguish-port-from-service
+  - document-evidence
+prerequisites: [linux-foundations]
+placement:
+  whole_lab_on_one_node: true
+runtime:
+  kind: virtual-machines
+  allowed_architectures: [x86_64]
+  require_matching_tested_images: true
+network:
+  policy: isolated-lab-v1
+  internet_access: false
+  allow_host_access: false
+  allow_cross_lab_access: false
+  ipv6: disabled-until-tested
+operator:
+  count: one-per-member
+  image_ref: cra-operator-minimal
+  memory_mib: 1024
+  vcpu: 1
+targets:
+  - id: target-web
+    image_ref: cra-recon-target
+    memory_mib: 768
+    vcpu: 1
+objectives:
+  - id: identify-http
+    validation: per-lab-flag
+    points: 100
+    evidence_level: validated
+    flag_storage: server-side-verifier
+hints:
+  learning_mode_cost: 0
+  competition_policy: explicit-before-start
+telemetry:
+  terminal_recording_default: false
+  packet_capture_retention: disabled-by-default
+  raw_sensors_may_complete_objectives: false
+images:
+  resolution: require-architecture-and-content-digest-lockfile
+# image_ref values deliberately do not resolve: M0/M2 must build and test them.

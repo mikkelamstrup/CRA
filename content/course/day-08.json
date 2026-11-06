@@ -1,0 +1,19 @@
+{
+  "day": 8,
+  "version": 1,
+  "title": "Cyber Championship · Fælles finale",
+  "summary": "Brug de kendte metoder i en holdkonkurrence med tydelige regler, faste point og fælles løsningsgennemgang.",
+  "mission_id": "operation-shadow",
+  "mission_version": 1,
+  "goals": ["Planlæg og fordel en afgrænset undersøgelse.", "Dokumentér fund, så andre kan efterprøve dem.", "Skeln mellem konkurrencepoint og faglig forklaring."],
+  "schedule": ["Lektion 1 · scope, regler og tekniktjek", "Lektion 2 · kort opvarmning og holdstrategi", "Lektion 3–5 · Cyber Championship med aftalt varighed", "Lektion 6 · løsninger og efterprøvning", "Lektion 7 · refleksion og eksport af egne noter"],
+  "lessons": [
+    {"title": "01 / Før start", "text": "Finalen bruger fem kendte opgavetyper: Linux 100, netværk 150, web 200, PCAP 250 og Operation Shadow 400 point. Alle hints er gratis. I vælger rækkefølgen. Kun jeres eget tildelte lab er i scope; ingen angreb på andre hold, kontrolplanet eller skolens netværk.", "exercise": "Kontrollér login, terminal og egen holdrolle. Gem solos og stop dem. Aftal en planlægger, undersøger, dokumentarist og efterprøver; byt roller undervejs. Dagens almindelige labknap åbner Operation Shadow til opvarmning. Selve finalen findes under Konkurrence."},
+    {"title": "02 / Et retfærdigt startpunkt", "text": "Læreren opretter konkurrencen og starter uret. Derefter oprettes nye holdmiljøer for de valgte opgaver under Mit hold. Gamle øvelsesmiljøer tæller ikke, og et flag fra et andet hold virker ikke. Læreren skifter opgave ved at fjerne det afsluttede miljø og oprette det næste. Holdnoter og optjente point bevares; filer i det fjernede miljø gør ikke.", "exercise": "Vælg jeres første opgave, og bed læreren starte den efter konkurrencens start. Notér holdaliaset fra Konkurrence. Gem relevante observationer i holdnotesbogen før hvert opgaveskift."},
+    {"title": "03 / Uret og pointene", "text": "Aflevér konkurrenceflags under Konkurrence. Den almindelige missionsaflevering giver øvelsespoint, som ikke flyttes til finalen. Hvert hold får højst point én gang pr. opgave, også efter reset. Serveren kontrollerer deadline. Uret kører under opstart og skift. Læreren kan pause alle hold ved teknikproblemer: tiden og afleveringerne pauses, men labarbejdet kan fortsætte. En frosset rangliste skjuler nye point; den stopper ikke afleveringer.", "exercise": "Aflevér et fund, og kontrollér at det står blandt holdets løste opgaver. Brug Bed om hjælp ved en teknisk fejl. Del ikke private nøgler, sessionscookies eller flags med andre hold."},
+    {"title": "04 / Forklar løsningen", "text": "Flest point viser flest godkendte flagfund under de valgte regler. Det er ikke automatisk den bedste dokumentation eller det bedste samarbejde. Hold med samme point deler placering. En faglig vurdering af forklaring og samarbejde gives særskilt og ændrer ikke skjult på pointene.", "exercise": "Efter slut vælger holdet ét fund og viser kilde, metode, resultat og begrænsning. Lad et andet hold stille ét kritisk spørgsmål. Eksportér egne noter, og skriv hvad du vil øve næste gang."}
+  ],
+  "commands": ["cat og grep til filspor", "nmap -sT mod eget mål", "curl -i til HTTP", "dig @MÅL-IP NAVN A", "tcpdump -nn -A -r FIL", "ssh -F /home/cra/academy/access/ssh_config nordlys"],
+  "reflection": ["Hvornår hjalp jeres rollefordeling?", "Hvilket fund kan I bedst dokumentere?", "Hvad kunne I ikke udlede af trafikken alene?", "Hvilken strategi vil I ændre næste gang?"],
+  "bonus": ["Efter konkurrencen: efterprøv en anden løsningsvej i eget lab.", "Skriv et forbedringsforslag til øvelsesappens adgangskontrol uden at ændre kontrolplanet."]
+}

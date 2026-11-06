@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "first-contact",
+  "version": 1,
+  "title": "Første kontakt",
+  "summary": "Find en ukendt service, læs dens spor, og dokumentér dit fund i et isoleret Linux-lab.",
+  "briefing": "Du er operatør på et afgrænset øvelsesnet. En målmaskine tilbyder en service, men porten er ikke oplyst. Find først din IP-adresse med ip -br addr. Undersøg derefter det tildelte måls porte med nmap. Brug curl til at læse HTTP-servicen og find flaget i dens indhold. Indsend kun flaget, når du selv har fundet det. Du må undersøge det mål, som vises i dit lab. Labbet har ingen adgang til internettet, serveren eller andre labs. Scanning alene giver ingen point: flaget skal valideres.",
+  "estimated_minutes": 25,
+  "resources": {
+    "architecture": "x86_64", "operator_memory_mib": 1024, "target_memory_mib": 768,
+    "operator_vcpus": 1, "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1", "egress": false
+  },
+  "objectives": [{"id":"find-service", "title":"Find serviceflaget", "description":"Undersøg målmaskinen og indsend det flag, som HTTP-servicen viser.", "points":100, "evidence":"validated_flag"}],
+  "hints": ["Start med nmap -sT -p 1-9000 efterfulgt af målets IP-adresse.", "En åben TCP-port kan være en HTTP-service. Prøv curl http://MÅL-IP:PORT/.", "Flaget står i HTTP-svaret og begynder med CRA{. Kopiér hele værdien inklusive klammer."]
+}

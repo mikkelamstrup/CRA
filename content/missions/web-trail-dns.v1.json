@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "web-trail-dns",
+  "version": 1,
+  "title": "Web Inspector · Navnet bag servicen",
+  "summary": "Undersøg rigtig DNS og HTTP i dit isolerede lab, og find rapport NL-308.",
+  "briefing": "Nordlys har flyttet sin servicerapport. Undersøg kun din viste mål-IP. Brug nmap -sT -p 8080 MÅL-IP og curl -i http://MÅL-IP:8080/. Læs beskeden om rapport.nordlys.test. Spørg labbets DNS direkte: dig @MÅL-IP rapport.nordlys.test A. Sammenlign med dig @MÅL-IP mangler.nordlys.test A. Domænet findes kun i dette lab.\n\nBrug svarets IP i curl --resolve rapport.nordlys.test:8080:MÅL-IP http://rapport.nordlys.test:8080/. --resolve giver kun curl en lokal navnetilknytning; det erstatter ikke den DNS-forespørgsel, du lige har målt. Følg servicens henvisning til rapport NL-308. Indsend rapportens flag.\n\nGem DNS-navn, svar-IP, port, URL, HTTP-status og kilde i notesbogen. Forklar forskellen på et navn, en IP og en URL. Brug aldrig skolens eller internettets systemer som mål. Holdmiljøer har én mål-IP pr. operatør; brug din egen viste adresse.",
+  "estimated_minutes": 55,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "find-dns-report",
+      "title": "Find servicerapporten",
+      "description": "Brug DNS og HTTP til at finde NL-308 og dokumentér deres forskellige roller.",
+      "points": 150,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Læs først forsiden på http://MÅL-IP:8080/ med curl -i.",
+    "Spørg den rigtige server: dig @MÅL-IP rapport.nordlys.test A. @ vælger DNS-server.",
+    "Svarsektionen indeholder en A-record. --resolve tager NAVN:PORT:IP, ikke en hel URL.",
+    "Læs /service/ og følg stien til /rapporter/rapport-308.txt. Brug curl med samme mål og port."
+  ]
+}

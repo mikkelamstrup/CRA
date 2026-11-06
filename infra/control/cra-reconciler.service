@@ -1,0 +1,27 @@
+[Unit]
+Description=Cyber Range Academy owned-resource reconciler
+After=postgresql.service network.target
+Requires=postgresql.service
+
+[Service]
+User=craapp
+Group=craapp
+WorkingDirectory=/opt/cra/backend
+Environment="CRA_DATABASE_DSN=dbname=cra user=craapp host=/var/run/postgresql"
+Environment=CRA_STATIC_DIR=/opt/cra/frontend/dist
+ExecStart=/opt/cra/backend/.venv/bin/python -m cra.reconcile
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+ReadWritePaths=/var/lib/cra
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

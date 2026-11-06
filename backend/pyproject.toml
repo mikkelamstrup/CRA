@@ -1,0 +1,26 @@
+[project]
+name = "cyber-range-academy"
+version = "0.1.0"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+  "fastapi==0.143.0",
+  "uvicorn==0.54.0",
+  "asyncssh==2.24.1", "websockets==17.2",
+  "psycopg[binary]==3.3.6", "argon2-cffi==25.1.0",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "playwright==1.63.0", "httpx2==2.13.1", "ruff==0.16.10", "mypy==2.4.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["cra"]

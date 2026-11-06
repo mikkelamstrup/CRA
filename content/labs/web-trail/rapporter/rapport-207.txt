@@ -1,0 +1,5 @@
+Hændelse NL-207: En intern rapport er lagt i webserverens offentlige område.
+Observation: Rapporten kan hentes med HTTP uden login. robots.txt beskytter ikke mod direkte adgang.
+Anbefaling: Fjern interne dokumenter fra det offentlige område, eller kræv serverkontrolleret autentifikation og autorisation. En ukendt URL er ikke adgangskontrol.
+Dit bevis for fundet i dette øvelsesmiljø:
+{{FLAG}}

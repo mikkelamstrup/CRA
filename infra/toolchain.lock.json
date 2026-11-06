@@ -1,0 +1,192 @@
+{
+  "format": 1,
+  "host": "ubuntu-26.04-amd64",
+  "method": "user-local Debian archive extraction; no package scripts or host installation",
+  "packages": [
+    {
+      "name": "genisoimage",
+      "version": "9:1.1.11-5",
+      "sha256": "19a0a26e83ea97a18c7d8388f554ceb46b364f6c00ff419acfe9e753ca4a9d2d"
+    },
+    {
+      "name": "ipxe-qemu",
+      "version": "1.21.1+git-20250829.969ce2c55+dfsg-3ubuntu2",
+      "sha256": "51c33251213ebd3c9613273b7e04890cac7e9fc4ec133d32a86a5f4170719410"
+    },
+    {
+      "name": "libarchive13t64",
+      "version": "3.8.5-1ubuntu2.2",
+      "sha256": "3e069924c6d18381485c9cfa148f290dc3e8c8f31720aee8f1943c704116a361"
+    },
+    {
+      "name": "libasound2-data",
+      "version": "1.2.15.3-1ubuntu1.1",
+      "sha256": "aad0eb27b9fab12c9fa9ed0b223c7ce871003fd3a564ad8eca4ecdea978ac347"
+    },
+    {
+      "name": "libasound2t64",
+      "version": "1.2.15.3-1ubuntu1.1",
+      "sha256": "96e20cf5c9095ef54ba46fccffea5c01cf2de17a1012c5683a67e43504a6d726"
+    },
+    {
+      "name": "libbrlapi0.8",
+      "version": "6.7-1ubuntu6",
+      "sha256": "b3218fd4461a1b5f59cc28b5213e521cf251f0d55fd068c02c15d2777ff4c305"
+    },
+    {
+      "name": "libpcsclite1",
+      "version": "2.4.1-1",
+      "sha256": "9287a7219e33c52f2a647bdfbaf4b6156de843b191d69aa60d101baeb5160032"
+    },
+    {
+      "name": "libcacard0",
+      "version": "1:2.8.1-2",
+      "sha256": "0a05436cc271ef202315548cdbc34cc77b9cab48a9e865e3006a8eb226f5f35f"
+    },
+    {
+      "name": "libdaxctl1",
+      "version": "81-1ubuntu1",
+      "sha256": "10b4620f07da833cf9ec0b0f762e53b7fdbe7432b27387cabd1d34d468066315"
+    },
+    {
+      "name": "libjpeg-turbo8",
+      "version": "2.1.5-4ubuntu4",
+      "sha256": "07672ce1f4d187e005ea0cc35d03e515ba056f3d3e7a9a25d3ef386e184da8c5"
+    },
+    {
+      "name": "libjpeg8",
+      "version": "8c-2ubuntu12",
+      "sha256": "1403d44d2c2d3eba6a7a8aea97fab0bac2e89e144a3bf600adfdd3ecdc3d9394"
+    },
+    {
+      "name": "libndctl6",
+      "version": "81-1ubuntu1",
+      "sha256": "3dd50f8ecb34e8252257b070e41a48513619352adf2cfafc11ecf6d7d51bb7ba"
+    },
+    {
+      "name": "libpixman-1-0",
+      "version": "0.46.4-1",
+      "sha256": "55a274db32d4824a1f1a48c42e959fe4293a4e4b545d400d89949cfabe160cc3"
+    },
+    {
+      "name": "libpmem1",
+      "version": "1.13.1-1.1ubuntu4",
+      "sha256": "12baaed97903ad6af5ee00ac77c01e7e061839f47aa79232725dd7016c6a8d76"
+    },
+    {
+      "name": "librdmacm1t64",
+      "version": "61.0-2ubuntu3",
+      "sha256": "3472f83075c2aecfde7b09e02f3f40e96b3356a4cbd1e21b5b33e6c54bff8c0e"
+    },
+    {
+      "name": "libslirp0",
+      "version": "4.9.1-1ubuntu1.1",
+      "sha256": "bfc8e5afed3287ecd28675fd683913e6b3c9d73bd16a63bc8f45cc3b7e6f83fb"
+    },
+    {
+      "name": "libssh-4",
+      "version": "0.11.3-1ubuntu2.1",
+      "sha256": "f2c70d1f4c88e3209d858d5a59a36b667e7eb5aa19a10e49675cca89f9905239"
+    },
+    {
+      "name": "liburing2",
+      "version": "2.14-1",
+      "sha256": "c0f1ed55d2eaa6e5d1224513b787c71348c6ab983e9c4178a417a7ffac3a8a00"
+    },
+    {
+      "name": "libusbredirparser1t64",
+      "version": "0.15.0-1build1",
+      "sha256": "3049b91a94ec938db9da3166ed56fecc9de00587becf53c3af4828f89c9f3b0c"
+    },
+    {
+      "name": "ubuntu-helper-virt-hwe",
+      "version": "1:10.2.1+ds-1ubuntu4.3",
+      "sha256": "9c37656c46d7d39cbaf1863c0876695f1d67612c3654b7a9e2d2ef9f161ce8c7"
+    },
+    {
+      "name": "ubuntu-virt",
+      "version": "1:10.2.1+ds-1ubuntu3.2",
+      "sha256": "74773681be739c73f6f58b9ec7c8814e12ba1e4ed82accd916704f40261b5d4b"
+    },
+    {
+      "name": "libvirt-common",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "88e144009019ee3dedc602dfda0a65ec6dc356620cd5c9d10d130c622cc9ce28"
+    },
+    {
+      "name": "libvirt0",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "cc0a0fadf42b84d6bbab1fa1a87438164fbced8dc8412e2a4659e22fb2960524"
+    },
+    {
+      "name": "libxml2-utils",
+      "version": "2.15.2+dfsg-0.1ubuntu0.2",
+      "sha256": "4590d9b84cdfa43682a4cba5926bb302e12927852940433dfd12a94fb7cdb92b"
+    },
+    {
+      "name": "libvirt-clients",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "7e0a8608513b8d5e878399d73722618c1db7b436b133403cdda8abafd11b471b"
+    },
+    {
+      "name": "libvirt-daemon-log",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "bacf42077cf39ab950562ad239240e825d0b559e93dad6806dde6af471a3f0ba"
+    },
+    {
+      "name": "libfdt1",
+      "version": "1.7.2-2ubuntu1",
+      "sha256": "7bbd25e194947a08997deef90fadea37dd255a9bc0bdcf7fea6d4c17131904d4"
+    },
+    {
+      "name": "qemu-system-common",
+      "version": "1:10.2.1+ds-1ubuntu3.2",
+      "sha256": "78f95053b28df69dc318e744a49f222d32932f3c50e515bb8cdccc8f89385d97"
+    },
+    {
+      "name": "qemu-system-data",
+      "version": "1:10.2.1+ds-1ubuntu3.2",
+      "sha256": "bb51024dfa4d5281a319d36125a556ff5ee00db5ded2db3a52c88d3985c9f31d"
+    },
+    {
+      "name": "seabios",
+      "version": "1.17.0-1ubuntu1",
+      "sha256": "edb9faf3a6ab0ae2eb9eb8283a7d514c1942ab920aa6836bf4639ee8be32eec1"
+    },
+    {
+      "name": "qemu-system-x86",
+      "version": "1:10.2.1+ds-1ubuntu3.2",
+      "sha256": "46bfa5208c570f47d380bc68ff3988684dd016c629b75260776f469a67d7e116"
+    },
+    {
+      "name": "systemd-container",
+      "version": "259.5-0ubuntu3.4",
+      "sha256": "b61524b292ff3784df6dfb4f2fded6e708efc2f4631c879c1b0951a63e5f8a32"
+    },
+    {
+      "name": "libvirt-daemon-driver-qemu",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "4e23e0ea9d5c0038c9b44844b66ffe4a7aa8734cfde0c021ed2d6481f9406752"
+    },
+    {
+      "name": "qemu-utils",
+      "version": "1:10.2.1+ds-1ubuntu3.2",
+      "sha256": "a21829cf2388bbf31a2890aa94a757519a048391fcdaabfa0a5b9347ac3e7e54"
+    },
+    {
+      "name": "cloud-image-utils",
+      "version": "0.33-1build1",
+      "sha256": "f343c7931346b7f08c9efd386787f48e539ce520e94fe37a26b50e5895fc626e"
+    },
+    {
+      "name": "libvirt-daemon",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "a6e6523fa23885d374de0ac8f577a46802af0a01c9da70f7c8b92e1a1b7e4034"
+    },
+    {
+      "name": "libvirt-daemon-common",
+      "version": "12.0.0-1ubuntu5.5",
+      "sha256": "38c27b3662103de854af1626e26f7324277d50c789e6faaf172411a61f461291"
+    }
+  ]
+}

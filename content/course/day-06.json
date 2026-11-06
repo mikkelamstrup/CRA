@@ -1,0 +1,58 @@
+{
+  "day": 6,
+  "version": 1,
+  "title": "Vulnerable App · Den forkerte rapport",
+  "summary": "Undersøg forskellen på login og objektadgang i en bevidst fejlkonfigureret app.",
+  "mission_id": "vulnerable-app",
+  "mission_version": 1,
+  "goals": [
+    "Skeln mellem autentifikation og autorisation.",
+    "Genskab en afgrænset objektadgangsfejl med konkrete HTTP-svar.",
+    "Foreslå en serverkontrol og en relevant negativtest."
+  ],
+  "schedule": [
+    "Lektion 1 · teori og demonstration",
+    "Lektion 2–3 · individuel undersøgelse",
+    "Lektion 4 · flag, kilde og forklaring",
+    "Lektion 5 · gem/stop solo og fordel holdroller",
+    "Lektion 6 · holdmission, rollebytte og efterprøvning",
+    "Lektion 7 · fælles rapport og debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / To forskellige spørgsmål",
+      "text": "Autentifikation spørger hvem du er. Autorisation spørger hvad du må gøre med en bestemt ressource. En gyldig session besvarer ikke automatisk det sidste spørgsmål. Denne lille app har med vilje glemt kontrollen af rapportens ejer.",
+      "exercise": "Åbn http://MÅL-IP:8081/ inde i labbet. Hent rapport701 uden login og notér status. Log ind med de oplyste øvelsescredentials."
+    },
+    {
+      "title": "02 / Session og cookie",
+      "text": "Serveren giver en tilfældig sessionscookie efter login. Browseren sender den med næste forespørgsel. I curl kan -c gemme og -b sende cookies. En cookie er adgangsmateriale: del den ikke og kopier den ikke til notesbogen.",
+      "exercise": "Læs /api/me. Notér rolle og allowed_reports uden at gemme cookie. Hent rapport701 med din session og sammenlign med forsøget uden login."
+    },
+    {
+      "title": "03 / En afgrænset adgangsfejl",
+      "text": "Når et id i en forespørgsel vælger et objekt, skal serveren kontrollere adgang til netop det objekt. Det hjælper ikke kun at skjule linket. Du har udtrykkelig tilladelse til at undersøge701 og702 i denne ene labapp.",
+      "exercise": "Ændr kun id fra701 til702. Dokumentér at den lave rolle får administratorrapporten. Aflever flaget og forklar en rettelse med server-side ejerskabs-/rollekontrol."
+    },
+    {
+      "title": "04 / Web Investigation · holdmission",
+      "text": "Gem og stop solos. Læreren vælger Vulnerable App som fælles holdmission. Fordel reproduktion uden login, reproduktion som analyst, afhjælpning og negativtest. Alle bruger kun deres eget link til fælles mål. Byt roller og efterprøv resultaterne.",
+      "exercise": "Skriv en fælles rapport: forventet/observeret adgang, præcis request, effekt på fiktive data, rettelse og en test der skal give403 efter rettelsen. Gem ikke cookies, password eller selve flaget i rapporten."
+    }
+  ],
+  "commands": [
+    "curl -i",
+    "curl -c FIL -d FORM URL",
+    "curl -b FIL URL",
+    "Labbrowser: adresselinje og Developer Tools → Network"
+  ],
+  "reflection": [
+    "Hvorfor var det ikke nok at være logget ind?",
+    "Hvor skal ejerskabskontrollen ligge?",
+    "Hvilken negativtest ville forhindre gentagelse?"
+  ],
+  "bonus": [
+    "Sammenlign401,403 og404 som designvalg uden at afprøve andre systemer.",
+    "Forklar hvorfor en uforudsigelig rapport-ID ikke erstatter adgangskontrol."
+  ]
+}

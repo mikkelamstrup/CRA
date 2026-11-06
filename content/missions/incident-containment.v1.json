@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "incident-containment",
+  "version": 1,
+  "title": "Inddæmning · Stop lækket, genåbn driften",
+  "summary": "Øv midlertidig lockdown, sessionstilbagekaldelse og en begrundet genåbning med restfejl.",
+  "briefing": "OPGAVE 11 · Cybercon træningsforløb\n\nLæs /home/cra/academy/incident-bridge/README.txt.\n\nDu har nu fundet lækvejen. Træn den første driftsbeslutning uden at forveksle begrænsning med en komplet reparation. Politikken kan ændres gennem den udleverede analyst-adgang.\n\n1. Gem oprindelig politik og beviser i din rapportmappe. Mål at den lækkede session kan bruges, og notér kundepåvirkningen.\n2. Sæt emergency_lockdown til true. Afprøv fra operatoren GET /api/reports?id=8201 og gem det faktiske 503-svar. Forklar hvem der også mister adgang.\n3. Fjern supporteksporten med expose_support_bundle=false og tilbagekald den fundne øvelsessession i revoked_sessions. Genåbn med emergency_lockdown=false. Kontrollér syntaks, så ugyldig JSON ikke forveksles med vellykket indgriben.\n4. Afprøv den tilbagekaldte session, almindeligt kundelogin og egen rapport. Afprøv også kunde-a mod rapport 8202: er ejerskabsfejlen stadig til stede? Udfyld remaining_cross_status med dit faktiske 200- eller 403-resultat. En ekstra korrekt ejerskabsrettelse er tilladt, men er fokus i næste opgave.\n5. Udfyld kontrol.json og kør bridge-check. Kontrollen kræver både et faktisk 503-forsøg under begrænsning og senere fungerende drift samt afvist lækket session. Flaget giver 250 point for denne afgrænsede kontrol.\n\nSkriv en kort status til ledelsen: hvad er begrænset, hvilke kunder er påvirket, hvilke beviser er bevaret, og hvad mangler før en fuld godkendelse?",
+  "estimated_minutes": 50,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "contain-session-leak",
+      "title": "Bestå opgavens tekniske kontrol",
+      "description": "Afprøv faktisk HTTP-adfærd, indsend din kontrolfil og aflever flaget. Rapportens forklaring vurderes af læreren særskilt.",
+      "points": 250,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Gem en kopi før ændringer. Politikfilen læses på hver request; du skal ikke genstarte tjenesterne.",
+    "Redigér de enkelte JSON-nøgler med Python. Brug python3 -m json.tool til syntakskontrol.",
+    "At skjule supportpakken tilbagekalder ikke en allerede kopieret session. Begge handlinger er nødvendige.",
+    "Slå lockdown fra igen og brug en frisk kundecookie. Kontrollér også fremmed rapport; et teknisk delmål er ikke bevis for fuld sikkerhed."
+  ]
+}

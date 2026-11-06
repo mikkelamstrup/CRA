@@ -1,0 +1,25 @@
+[Unit]
+Description=Cyber Range Academy terminal relay
+After=cra-api.service network.target
+[Service]
+User=crarelay
+Group=crarelay
+WorkingDirectory=/opt/cra/backend
+Environment=CRA_ORIGINS=http://127.0.0.1:28000,http://localhost:28000,http://127.0.0.1:8000
+ExecStart=/opt/cra/backend/.venv/bin/python -m cra.relay
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+InaccessiblePaths=/var/lib/cra /var/run/postgresql
+UMask=0077
+MemoryMax=384M
+TasksMax=64
+[Install]
+WantedBy=multi-user.target

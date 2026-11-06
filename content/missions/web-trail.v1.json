@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "web-trail",
+  "version": 1,
+  "title": "Websporet · Den glemte rapport",
+  "summary": "Følg spor på en webserver, find en offentliggjort intern rapport, og forklar hvorfor robots.txt ikke beskytter oplysninger.",
+  "briefing": "Opgave 3: Nordlys har fået besked om, at en intern hændelsesrapport kan læses uden login. Undersøg kun den mål-IP, som CRA viser i dette lab. Start med at finde den åbne webport med nmap -sT -p 1-9000 MÅL-IP. Nordlys har en almindelig organisationsforside uden synlig rapport eller opgavelink. Læs sidens rå HTML med curl -i http://MÅL-IP:PORT/. HTML-kommentarer kan indeholde spor, som browseren ikke viser. Erstat MÅL-IP og PORT med dine fund; skriv ikke pladsholderne bogstaveligt.\n\nBrug din mål-IP i CRA; den offentlige Cloudflare-side er en demonstrationskopi uden dit personlige flag. Følg sporet i HTML-kommentaren til robots.txt. Her finder du en URL-sti, som du kan undersøge med curl på den samme målmaskine. En URL-sti er en adresse på webserveren, ikke en mappe du skal åbne med cd i din terminal. Følg derefter driftsjournalens henvisning til rapporten om hændelse NL-207. Rapporten indeholder dit flag.\n\nBegreber: HTTP er protokollen mellem klient og webserver. En port angiver, hvilken service du kontakter. HTTP-status 200 betyder, at denne forespørgsel lykkedes; 404 betyder, at den forespurgte ressource ikke blev fundet. curl -i viser både svarheaders og indhold. robots.txt giver instruktioner til samarbejdende søgemaskiner, men håndhæver ingen adgangskontrol.\n\nIndsend hele flaget fra den rigtige rapport. Dokumentér mål, port, URL-stier, mindst én observeret HTTP-status og de kommandoer, du brugte, i din notesbog. Forklar hvorfor rapporten er tilgængelig, og foreslå en løsning. Flaget giver point; din forklaring vurderes af læreren.",
+  "estimated_minutes": 35,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "find-report",
+      "title": "Find den eksponerede rapport",
+      "description": "Følg websporet til rapporten om NL-207, og indsend dens flag. Forklar din metode og den manglende adgangskontrol for læreren.",
+      "points": 100,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Find først webporten med nmap -sT -p 1-9000 MÅL-IP. Brug derefter curl -i http://MÅL-IP:PORT/.",
+    "Forsidens spor er i en HTML-kommentar. Prøv curl -s http://MÅL-IP:PORT/ | grep -A 3 WEBTEAM. Læs derefter robots.txt med curl; Disallow er ikke en låst dør.",
+    "Tilføj stien fra Disallow til samme http://MÅL-IP:PORT. Læs driftsoversigten og journalen; brug curl, ikke cd.",
+    "Journalen skelner mellem NL-206 og NL-207. Følg den fulde rapportsti for NL-207.",
+    "Flaget begynder med CRA{. Kopiér hele værdien inklusive klammer fra rapporten, og indsend den i opgaven."
+  ]
+}

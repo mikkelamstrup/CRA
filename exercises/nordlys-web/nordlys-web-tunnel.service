@@ -1,0 +1,16 @@
+[Unit]
+Description=Nordlys teaching website Cloudflare Tunnel
+Wants=nordlys-web.service
+After=nordlys-web.service
+[Service]
+WorkingDirectory=/home/crauser/nordlys-web
+ExecStart=/usr/bin/python3 /home/crauser/nordlys-web/tunnel.py
+Environment=PYTHONDONTWRITEBYTECODE=1
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+UMask=0077
+MemoryMax=256M
+TasksMax=64
+[Install]
+WantedBy=default.target

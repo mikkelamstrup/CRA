@@ -1,0 +1,20 @@
+MANDAT · CC-901 · godkendt af Nordteles hændelsesansvarlige
+
+Du arbejder alene. Dit scope er egen CRA-operator og den mål-IP, CRA viser.
+Kundeportalen er på port 8081. Det er en lille model af en del af en stor
+telekoncern; telefonsystemer, mobilmaster og den øvrige koncern er ikke modelleret.
+
+Du må undersøge portalens HTTP-svar, bruge de to testkonti, læse de udleverede
+logs og ændre /etc/cybercon/policy.json via den udleverede SSH-adgang.
+Du må kortvarigt begrænse portaladgangen, når du dokumenterer hvorfor.
+Du skal genåbne normal kundeadgang, når fejlene er rettet.
+Ingen generel administratoradgang er nødvendig eller udleveret.
+
+Angrebstrafikken er virkelige, lavfrekvente HTTP-forespørgsler fra en styret
+øvelsesproces inde i målet. Kildeadressen 127.0.0.1 repræsenterer denne proces;
+den identificerer ikke en rigtig ekstern angriber. Forespørgsler fortsætter
+også efter sikring, men skal nu afvises. Du skal lukke adgangsvejen.
+
+Undlad at stoppe angrebsprocessen, slette logs eller ændre kontrolprogrammet.
+De er øvelsens målegrundlag. Andre labs, CRA-platformen, værtsmaskiner,
+skolens net og internettet er uden for mandatet. Alle kunder og data er fiktive.

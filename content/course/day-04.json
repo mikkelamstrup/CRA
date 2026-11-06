@@ -1,0 +1,63 @@
+{
+  "day": 4,
+  "version": 1,
+  "title": "Access Granted · Brugere og rettigheder",
+  "summary": "Brug autoriseret SSH-adgang og forklar Linux-rettigheder med konkrete forsøg.",
+  "mission_id": "access-granted",
+  "mission_version": 1,
+  "goals": [
+    "Log ind med en separat øvelsesnøgle uden at deaktivere værtstjek.",
+    "Læs bruger, gruppe, ejer og fil-/mapperettigheder.",
+    "Ret en afgrænset rettighedsfejl på en fil du selv ejer."
+  ],
+  "schedule": [
+    "Lektion 1 · teori og demonstration",
+    "Lektion 2–3 · individuel undersøgelse og hjælp efter behov",
+    "Lektion 4 · flag, forklaring og gemte noter",
+    "Lektion 5 · stop solo, fordel holdroller og start fælles lab",
+    "Lektion 6 · efterprøv fund og byt roller",
+    "Lektion 7 · fælles afleveringsnote og 15 minutters debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / SSH er en virkelig forbindelse",
+      "text": "SSH krypterer forbindelsen og autentificerer server og bruger. Din øvelsesnøgle er genereret inde i din operator; CRA’s administrationsnøgle er ikke med i opgaven. Den medfølgende konfiguration låser værtens nøgle og vælger port 2222. En forkert vært eller bruger skal afvises.",
+      "exercise": "Læs README i /home/cra/academy/access. Log ind med den viste ssh -F-kommando. Kør id og pwd; sammenlign med de samme kommandoer før login."
+    },
+    {
+      "title": "02 / Ejer, gruppe og andre",
+      "text": "Rettighedsstrengen har tre grupper: ejer, gruppe og andre. r betyder læsning, w skrivning og x udførsel. På en mappe bruges x til at slå navne op gennem mappen. Filens egne rettigheder er derfor ikke det eneste, der afgør adgang.",
+      "exercise": "Kør ls -ld /srv/cra-access/reports /srv/cra-access/admin og ls -l /srv/cra-access/reports. Sammenhold med id. Læs rapport-404.txt; forklar hvorfor admin afviser dig."
+    },
+    {
+      "title": "03 / Ret kun din egen fejl",
+      "text": "Least privilege betyder den mindste nødvendige adgang. 777 er sjældent en god standard. Efter exit er du tilbage på din operator. Du kan ændre rettigheder på din egen fil uden sudo. En afvist læsning er et målt resultat, ikke nødvendigvis en teknisk fejl i CRA.",
+      "exercise": "På operatoren: mkdir -p ~/academy/rights; printf \"egen øvelsesnote\\n\" > ~/academy/rights/note.txt. Kør chmod 000 ~/academy/rights/note.txt og prøv cat. Ret med chmod 600 og læs igen. Dokumentér før/efter og indsend flaget fra rapporten."
+    },
+    {
+      "title": "04 / Broken Access · holdmission",
+      "text": "Gem noter og stop solo før holdstart. Læreren vælger Access Granted. Hver deltager har sin egen operator og øvelsesnøgle til det fælles mål. En undersøger bruger/grupper, en mapper/filer, en reproducerer en kontrolleret fejl på sin egen fil. Del forklaringer, aldrig private nøgler.",
+      "exercise": "Skriv en fælles fejlrapport: bruger, filsti, observation, forklaring og mindst mulig rettelse. En anden deltager efterprøver metoden på sin egen operator. På målet ændrer I ikke adminrettigheder. Byt roller, og forklar hvorfor SSH-login ikke giver adgang til alt."
+    }
+  ],
+  "commands": [
+    "ssh -F /home/cra/academy/access/ssh_config nordlys",
+    "id",
+    "pwd",
+    "ls -l",
+    "ls -ld",
+    "chmod 000",
+    "chmod 600",
+    "cat",
+    "exit"
+  ],
+  "reflection": [
+    "Hvad beviser et vellykket SSH-login, og hvad beviser det ikke?",
+    "Hvad betyder x på en mappe?",
+    "Hvorfor var 600 nok til din egen note?"
+  ],
+  "bonus": [
+    "Prøv at logge ind som en ikke-tilladt øvelsesbruger; dokumentér afvisningen.",
+    "Forklar forskellen mellem filens rettigheder og forældremappens rettigheder."
+  ]
+}

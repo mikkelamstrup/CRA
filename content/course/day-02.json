@@ -1,0 +1,60 @@
+{
+  "day": 2,
+  "version": 1,
+  "title": "Network Recon · Kend dit net",
+  "summary": "Kortlæg en autoriseret målmaskine, og adskil en åben port fra en bevist service.",
+  "mission_id": "first-contact",
+  "mission_version": 1,
+  "goals": [
+    "Angiv det præcise tilladte mål og forklar forskellen på vært, IP og port.",
+    "Find åbne porte med en afgrænset TCP-scanning.",
+    "Efterprøv et servicefund og dokumentér begrænsningerne."
+  ],
+  "schedule": [
+    "Lektion 1 · teori og demonstration",
+    "Lektion 2–3 · individuel undersøgelse og hjælp efter behov",
+    "Lektion 4 · flag, forklaring og gemte noter",
+    "Lektion 5 · stop solo, fordel holdroller og start fælles lab",
+    "Lektion 6 · efterprøv fund og byt roller",
+    "Lektion 7 · fælles afleveringsnote og 15 minutters debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / Et kort med grænser",
+      "text": "En IP-adresse identificerer et netinterface i et bestemt net. En port hjælper operativsystemet med at vælge den service, forbindelsen skal til. Dit lab er isoleret; måladressen vises i CRA. En liste over private adresser er ikke en tilladelse til at scanne dem.",
+      "exercise": "Notér din mål-IP. Kør ip -br address på din operator, og find adressen på lab0. Tegn operator → mål."
+    },
+    {
+      "title": "02 / Spørg kun det aftalte mål",
+      "text": "nmap -sT laver rigtige TCP-forbindelsesforsøg. -p vælger porte; 22,8080 er to porte, mens 1-9000 er et interval. open betyder at forbindelsen blev accepteret. closed og filtered beskriver andre resultater; ingen af dem beviser, at en hel maskine er sikker.",
+      "exercise": "Kør nmap -sT -p 22,8080 MÅL-IP. Erstat MÅL-IP med din adresse. Notér port og status, og gæt først derefter på servicens type."
+    },
+    {
+      "title": "03 / Efterprøv banneret",
+      "text": "Et service-navn ved et portnummer kan være et opslag i en kendt portliste. Det er ikke altid en identificeret applikation. curl sender en virkelig HTTP-forespørgsel. -i viser headers og indhold; en forkert port kan give forbindelsesfejl.",
+      "exercise": "Kør curl -i http://MÅL-IP:8080/. Find HTTP-status og flaget, indsend det, og skriv hvad dette beviser ud over portscanningen."
+    },
+    {
+      "title": "04 / Ghost Network · holdmission",
+      "text": "Gem først dine solonoter og stop sololabbet uden reset. Læreren opretter et hold; vælg Første kontakt som fælles mission under Mit hold. I har separate operatorer, men ét fælles mål med en adresse på hvert link. Fordel kortlægger, serviceundersøger og dokumentarist; efter 15 minutter bytter I.",
+      "exercise": "Aflevér et fælles netkort i holdnotesbogen med hver operators adresse, egen mål-IP, observerede porte, HTTP-fund og to ting I ikke ved. Efterprøv en andens konklusion og forklar én kommando hver."
+    }
+  ],
+  "commands": [
+    "ip -br address",
+    "ip route",
+    "nmap -sT -p 22,8080",
+    "curl -i",
+    "ss -ltn",
+    "Ctrl-C"
+  ],
+  "reflection": [
+    "Hvorfor er en åben port ikke bevis for en sårbarhed?",
+    "Hvilken del af netkortet er målt, og hvilken er en antagelse?",
+    "Hvad ændrede sig ved overgangen til hold?"
+  ],
+  "bonus": [
+    "Sammenlign curl på korrekt og forkert port uden at udvide scope.",
+    "Undersøg forskellen på ip address og ip route."
+  ]
+}

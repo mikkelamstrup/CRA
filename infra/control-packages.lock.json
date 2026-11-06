@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "guest": "ubuntu-24.04-amd64",
+  "packages": [
+    {
+      "name": "libjson-perl",
+      "version": "4.10000-1",
+      "sha256": "b88095b0b6307650f581c17240ea2cc7ba1676c6f7eb72b0066eaf159215d926"
+    },
+    {
+      "name": "postgresql-client-common",
+      "version": "257build1.1",
+      "sha256": "696255bc15e9736edfcb8f7d0309deaf35d761233bd26e2db14d2ae8660a9602"
+    },
+    {
+      "name": "ssl-cert",
+      "version": "1.1.2ubuntu1",
+      "sha256": "99654cc8dd7e2cd4cc907504f7564c0055d8cb06e1bf5aa93f822f007981d271"
+    },
+    {
+      "name": "postgresql-common",
+      "version": "257build1.1",
+      "sha256": "5363ba39f18ede7f54776d41356d7dd6e859d089ee0092096050500c9d4413f5"
+    },
+    {
+      "name": "libllvm17t64",
+      "version": "1:17.0.6-9ubuntu1",
+      "sha256": "1863b5459ca4a6691f5e039e76157f074ee08b48176267642ee4dfea065f5db4"
+    },
+    {
+      "name": "libpq5",
+      "version": "16.15-0ubuntu0.24.04.1",
+      "sha256": "3f96dd36bcd7841172c1ead4965da20a193bb9ccf9a93a3f5a3ac7f56369dbb1"
+    },
+    {
+      "name": "postgresql-client-16",
+      "version": "16.15-0ubuntu0.24.04.1",
+      "sha256": "4796f72e1a7270ad8c17b1ecb025cd453f692b42c10aaf89f6b476da61761eac"
+    },
+    {
+      "name": "postgresql-16",
+      "version": "16.15-0ubuntu0.24.04.1",
+      "sha256": "d60ae76fb862cd4cca7bfdcdcdcc271c5e1d75f6b7915305ce2d962735a4b666"
+    },
+    {
+      "name": "python3-pip-whl",
+      "version": "24.0+dfsg-1ubuntu1.3",
+      "sha256": "4b7c50db8f261b208c1d9cde8db148c1f682cc516957b986ada5088cfcee1359"
+    },
+    {
+      "name": "python3-setuptools-whl",
+      "version": "68.1.2-2ubuntu1.2",
+      "sha256": "edfa94cc1f6a33af99cfaf6ebfe35dbcd9c4bdd8555b90c0d8e78479faf5c8f0"
+    },
+    {
+      "name": "python3.12-venv",
+      "version": "3.12.3-1ubuntu0.17",
+      "sha256": "b8d4bfea3df63945b6a202bd0773caf7727dde86d2df91df6e88a8ccf7c18b7e"
+    }
+  ]
+}

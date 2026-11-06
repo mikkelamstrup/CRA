@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "vulnerable-app",
+  "version": 1,
+  "title": "Vulnerable App · Den forkerte rapport",
+  "summary": "Undersøg forskellen på login og objektadgang i en bevidst fejlkonfigureret app.",
+  "briefing": "Hvis du vil bruge Wireshark eller labbrowseren, vælg “Grafisk labdesktop · browser og Wireshark” før Start mission. Det bruger 2 GiB RAM pr. operator; terminalforløbet kan også gennemføres uden grafik.\n\nBrug kun den fiktive øvelsesapp på http://MÅL-IP:8081/ i dit eget lab. Åbn den i browseren inde i labbets grafiske skrivebord, eller brug curl i terminalen. Øvelsesbrugeren er analyst; den offentlige øvelseskode er nordlys-training-only. Det er fiktive labcredentials og må aldrig genbruges.\n\nUndersøg først /api/reports?id=701 uden login. Log derefter ind og læs /api/me og rapport701. Din rolle må kun læse701. Appens forside nævner rapport702, som tilhører administratorrollen. Undersøg den præcise forskel ved at ændre kun id til702. Find flaget i den beskyttede rapports indhold og indsend det.\n\nCLI: curl -c /home/cra/academy-app.cookies -d \"username=analyst&password=nordlys-training-only\" http://MÅL-IP:8081/login. Brug derefter curl -b /home/cra/academy-app.cookies -i \"http://MÅL-IP:8081/api/reports?id=701\" og tilsvarende702. Anførselstegn beskytter URL’ens tegn mod shellen.\n\nDokumentér forventet adgang, faktisk adgang, forespørgsel og svar. Forklar hvorfor et login ikke er tilstrækkelig autorisation. Foreslå serverkontrol af brugerens adgang til hvert objekt. Kun denne labapp er bevidst sårbar; CRA-platformen, andre labs og eksterne sider er uden for scope.",
+  "estimated_minutes": 60,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "find-authorization-flaw",
+      "title": "Dokumentér missionens fund",
+      "description": "Undersøg forskellen på login og objektadgang i en bevidst fejlkonfigureret app.",
+      "points": 200,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Begynd uden login, og notér HTTP401.",
+    "Gem sessionens cookie med curl -c, og send den igen med -b.",
+    "Sammenlign /api/me, rapport701 og rapport702. Hold øvrige dele af URL’en uændrede.",
+    "Rapport702 tilhører en anden rolle, men serveren kontrollerer kun login. Find flaget i dens body."
+  ]
+}

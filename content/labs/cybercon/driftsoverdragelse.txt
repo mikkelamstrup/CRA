@@ -1,0 +1,40 @@
+NORDTELE · Overdragelse til Cybercon
+
+Portal: http://MÅL-IP:8081/ (brug dit labs aktuelle mål-IP)
+SSH: ssh -F /home/cra/academy/cybercon/ssh_config nordtele
+SSH-nøglen og værtskontrollen er allerede konfigureret.
+
+Testkonto kunde-a: nordtele-lab-a · må kun læse rapport 8201.
+Testkonto kunde-b: nordtele-lab-b · må kun læse rapport 8202.
+Testkoderne er offentlige øvelsesdata. Brug dem kun her.
+GET /api/me viser den aktuelle kunde og tilladte rapport.
+GET /api/reports?id=RAPPORTNUMMER henter en rapport.
+POST /login accepterer username og password som almindelige formularfelter.
+curl -c COOKIEFIL gemmer en session; curl -b COOKIEFIL sender den igen.
+
+Driftsnotat: En supportpakke blev gjort tilgængelig på
+/support/diagnostics.json under fejlsøgning. En kompatibilitetsændring slog
+desuden portalens ejerskabskontrol fra. Det er endnu ikke undersøgt, hvilke
+oplysninger der kunne læses, eller om en session fra supportpakken stadig virker.
+
+På målmaskinen:
+/srv/cybercon/evidence/initial-access.jsonl: bevaret kopi af faktisk tidlig trafik.
+/var/log/cybercon/access.jsonl: portalens aktuelle forespørgsler og svar.
+/var/log/cybercon/attack.jsonl: øvelsesprocessens løbende HTTP-resultater.
+/etc/cybercon/policy.json: sikkerhedspolitik, som din analyst-rolle må ændre.
+
+Politikken læses ved hver forespørgsel. Ingen genstart er nødvendig.
+emergency_lockdown: midlertidig blokering af login og dataadgang.
+enforce_report_ownership: kontrollér kundeejerskab ved hver rapportlæsning.
+expose_support_bundle: tillad offentlig adgang til supportpakken.
+revoked_sessions: liste over sessionstokens, der ikke længere må bruges.
+
+Redigér JSON med Python eller en tilgængelig editor. Kontrollér syntaks med
+python3 -m json.tool /etc/cybercon/policy.json
+Ugyldig politik giver HTTP 503; ret filen igen via SSH.
+Gem en kopi før første ændring. Mappen er skrivebeskyttet, men politikfilen
+kan skrives direkte; vær opmærksom på editorer, som forsøger at erstatte filen.
+
+Driftskontrol: cybercon-check (køres på målmaskinen).
+Den kontrollerer faktisk HTTP-adfærd og giver kun flag, når testene består.
+Du har kun sudo til denne faste kontrol, ikke til en generel shell.

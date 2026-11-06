@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "incident-http",
+  "version": 1,
+  "title": "HTTP · Hvem må læse rapporten?",
+  "summary": "Forstå requests, login, cookies og forskellen på manglende login og manglende adgang.",
+  "briefing": "OPGAVE 9 · Cybercon træningsforløb\n\nLæs /home/cra/academy/incident-bridge/README.txt.\n\nDu kender nu filfund, DNS og SSH fra opgave 8. Nu undersøger du en kundeportal, der allerede har korrekt adgangskontrol. Dit mål er at kunne forklare en HTTP-request og efterprøve, hvem den repræsenterer.\n\n1. Læs README.txt og mandat.txt. Sæt BASE til din egen mål-IP på port 8081. Gem headers og body fra en anonym rapportforespørgsel.\n2. Log ind som kunde-a med formularfelterne username og password. Gem sessionen i en cookiefil og brug den igen. Undersøg /api/me.\n3. Sammenlign egen rapport 8201 med kunde-b's rapport 8202. Notér metode, sti, identitet, status og hvad body faktisk beviser. Undersøg også hvad forkert adgangskode giver på /login: en 403 er ikke altid samme fejltype.\n4. Udfyld kontrol.json ud fra dine resultater og overfør den til den faste afleveringsfil på målet. Kør bridge-check via den udleverede SSH-konfiguration. Flaget giver 150 point. Læreren vurderer din forklaring særskilt.\n\nPolitikken er skrivebeskyttet i denne opgave. Du skal forstå og måle korrekt adgang, ikke ændre serveren.",
+  "estimated_minutes": 40,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "verify-http-access",
+      "title": "Bestå opgavens tekniske kontrol",
+      "description": "Afprøv faktisk HTTP-adfærd, indsend din kontrolfil og aflever flaget. Rapportens forklaring vurderes af læreren særskilt.",
+      "points": 150,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Start med curl -i \"$BASE/api/reports?id=8201\". En statuskode er kun én del af svaret.",
+    "Brug curl -c a.cookies -d \"username=kunde-a&password=nordtele-lab-a\" \"$BASE/login\" og derefter -b a.cookies.",
+    "GET /api/me fortæller hvilken kunde sessionen repræsenterer. Sammenhold allowed_reports med dit faktiske forsøg.",
+    "Kontrolfilen skal beskrive anonym adgang, egen rapport og den anden kundes rapport. Forklar forskellen på loginfejl og ejerskabskontrol."
+  ]
+}

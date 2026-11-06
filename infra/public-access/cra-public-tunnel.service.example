@@ -1,0 +1,16 @@
+# Prepared user service; not installed/enabled by this repository.
+[Unit]
+Description=CRA named public HTTPS tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/cloudflared --no-autoupdate tunnel --config %h/cra-public-access/config.yml run
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+UMask=0077
+
+[Install]
+WantedBy=default.target

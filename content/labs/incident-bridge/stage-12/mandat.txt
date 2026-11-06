@@ -1,0 +1,24 @@
+CYBERCON · Afgrænset individuel træningssag
+
+Alle virksomheder, konti og hændelser er fiktive. Brug kun din egen mål-IP på port 8081 og den udleverede SSH-adgang. Andre elever, CRA-kontrolplanet, internettet og skolens netværk er uden for mandatet.
+
+SSH fra operatoren:
+ssh -F /home/cra/academy/incident-bridge/ssh_config nordtele
+Det logger ind som analyst på målmaskinen. Nøgle og værtskontrol er allerede sat op.
+
+Testkonto kunde-a / nordtele-lab-a ejer rapport 8201.
+Testkonto kunde-b / nordtele-lab-b ejer rapport 8202.
+POST /login modtager username og password som formularfelter.
+GET /api/me viser kunden og tilladte rapporter.
+GET /api/reports?id=8201 eller 8202 henter rapporter.
+/support/diagnostics.json er sagens afgrænsede supporteksport.
+Disse testkoder er offentlige øvelsesdata; din CRA-login-cookie hører aldrig hjemme i portalen.
+
+På målet kan du læse:
+/srv/cybercon/evidence/initial-access.jsonl (bevaret faktisk tidlig HTTP-trafik)
+/var/log/cybercon/access.jsonl (aktuel HTTP-trafik)
+/var/log/cybercon/attack.jsonl (øvelsesprocessens faktiske forsøg)
+/etc/cybercon/policy.json (skrivebeskyttet i opgave 9–10, redigerbar i 11–12).
+Du må skrive /srv/incident-bridge/kontrol.json. Du har kun sudo til den faste bridge-check, ingen administrator-shell. Faste kontrolscripts og beviser skal bevares.
+
+Aflever din rapport særskilt til læreren. Flaget kontrollerer afgrænsede tekniske observationer, ikke kvaliteten af forklaring, tidslinje eller ledelsesstatus. Eksportér filer før reset eller opgaveskift. Stop/start bevarer filer; reset/fjernelse gør ikke.

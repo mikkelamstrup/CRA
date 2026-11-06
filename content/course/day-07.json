@@ -1,0 +1,63 @@
+{
+  "day": 7,
+  "version": 1,
+  "title": "Operation Shadow · Det samlede spor",
+  "summary": "Kæd filfund, DNS, HTTP og autoriseret SSH sammen til en dokumenteret undersøgelse.",
+  "mission_id": "operation-shadow",
+  "mission_version": 1,
+  "goals": [
+    "Planlæg en undersøgelse med kendte værktøjer og tydeligt scope.",
+    "Sammenkæd flere efterprøvelige kilder.",
+    "Skriv en metode som en makker kan gentage uden skjulte antagelser."
+  ],
+  "schedule": [
+    "Lektion 1 · teori og demonstration",
+    "Lektion 2–3 · individuel undersøgelse",
+    "Lektion 4 · flag, kilde og forklaring",
+    "Lektion 5 · gem/stop solo og fordel holdroller",
+    "Lektion 6 · holdmission, rollebytte og efterprøvning",
+    "Lektion 7 · fælles rapport og debrief"
+  ],
+  "lessons": [
+    {
+      "title": "01 / Plan før kommando",
+      "text": "Start med spørgsmålet: hvilken oplysning mangler vi, og hvilken kilde kan give den? Et kendt værktøj er ikke en begrundelse for at bruge det overalt. Hold en lille liste over observeret, antaget og endnu ukendt.",
+      "exercise": "Læs README og journal.txt i academy/shadow. Notér scope og en plan med tre trin før første netværksforespørgsel."
+    },
+    {
+      "title": "02 / Sammenkæd kilder",
+      "text": "En fil kan pege på et navn, DNS på en adresse, HTTP på en service og SSH på et autoriseret filsystem. Hvert led skal efterprøves. At en kilde henviser til en anden gør dem ikke nødvendigvis uafhængige.",
+      "exercise": "Følg journalens DNS-navn via din målserver, læs webservicens henvisning og forbind med den udleverede SSH-konfiguration. Gem præcis én observation pr. led."
+    },
+    {
+      "title": "03 / En forklaring der kan gentages",
+      "text": "En god rapport viser metode, relevante resultater og begrænsninger. Kopiér ikke hele terminalen. Skeln især mellem et portfund, en vellykket HTTP-forespørgsel, et login og en faktisk fillæsning.",
+      "exercise": "Find den tilladte rapport og aflever flaget. Skriv derefter en kort reproduktion uden nøgler, cookies eller flag. Lad en makker pege på et trin der mangler begrundelse."
+    },
+    {
+      "title": "04 / Qualification · mini-CTF i hold",
+      "text": "Gem og stop solos. Læreren starter Operation Shadow for hold og aftaler en rolig øvetid på45minutter. Dette er træning før finalen; den serverstyrede konkurrence kommer dag8. Fordel planlægger, undersøger, dokumentarist og efterprøver. Hints er gratis.",
+      "exercise": "Løs fælles mission, byt roller undervejs og aflever en fælles reproduktion. Øv reglerne: kun eget lab, ingen delte private nøgler, ét holdflag, tydelige hjælpespørgsmål og stop ved scope-tvivl."
+    }
+  ],
+  "commands": [
+    "cat",
+    "grep",
+    "dig",
+    "nmap -sT",
+    "curl -i",
+    "ssh -F",
+    "id",
+    "ls -l",
+    "exit"
+  ],
+  "reflection": [
+    "Hvilket led var den svageste del af din forklaring?",
+    "Hvilke kilder var reelt uafhængige?",
+    "Hvilken strategi vil I bruge i finalen?"
+  ],
+  "bonus": [
+    "Foreslå en alternativ metode til ét trin og efterprøv den i scope.",
+    "Skriv en kort tjekliste til en makker uden at afsløre løsningen."
+  ]
+}

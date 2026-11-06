@@ -1,0 +1,40 @@
+OPGAVE 13 · HJÆLP TRIN FOR TRIN
+
+Målet: Luk datalækket, så kunderne stadig kan læse deres egne rapporter. En offentlig supportfil afslører en kundesession (et adgangsbevis). Portalen lader også kunde A læse kunde B's rapport. Begge fejl skal lukkes.
+
+1) Åbn terminalen i dit opgave 13-miljø. Læs adgangsoplysningerne:
+```sh
+cat /home/cra/academy/cybercon/driftsoverdragelse.txt
+```
+
+2) Forbind til målmaskinen:
+```sh
+ssh -F /home/cra/academy/cybercon/ssh_config nordtele
+```
+Kør trin 3–6 her på målmaskinen.
+
+3) Gem en kopi før ændringer, og se de første spor:
+```sh
+cp -n /etc/cybercon/policy.json ~/policy-foer.json
+cp -n /srv/cybercon/evidence/initial-access.jsonl ~/spor-foer.jsonl
+tail -n 10 ~/spor-foer.jsonl
+```
+Notér tidspunkt, rapportnummer og HTTP-status. 200 betyder, at forespørgslen lykkedes.
+
+4) Ret sikkerhedspolitikken. Kopiér hele næste linje som én kommando:
+```sh
+python3 -c 'import json; p="/etc/cybercon/policy.json"; d=json.load(open(p)); d.update(emergency_lockdown=False,enforce_report_ownership=True,expose_support_bundle=False); d["revoked_sessions"]=list(set(d["revoked_sessions"]+["nt-support-legacy"])); open(p,"w").write(json.dumps(d,indent=2)+"\n")'
+```
+
+Det gør fire ting: normal drift er åben; kunder må kun læse egne rapporter; supportfilen skjules; det lækkede adgangsbevis spærres. Ingen genstart nødvendig.
+
+5) Kontrollér resultatet:
+```sh
+python3 -m json.tool /etc/cybercon/policy.json
+cybercon-check
+```
+Kontrollen prøver begge kunders egen/fremmed rapport, anonym adgang, den lækkede session og supportfilen. Ved fejl: læs hvilken test der fejler, og bed læreren om hjælp.
+
+6) Ved godkendelse: kopiér dit flag til flagfeltet i CRA. Skriv exit for at komme tilbage til din operator.
+
+7) Aflever en kort rapport: Hvad var de to fejl? Hvad viste sporene? Hvad ændrede du, og hvad viste kontrollen? Brug skabelonen /home/cra/academy/cybercon/rapport.md. Medtag ikke flag eller adgangsbeviser. Nulstil ikke miljøet.

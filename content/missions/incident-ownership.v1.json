@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "incident-ownership",
+  "version": 1,
+  "title": "Ejerskab · Ret fejlen og bevis normal drift",
+  "summary": "Luk en adgangsfejl og dokumentér både positive og negative tests for to kunder.",
+  "briefing": "OPGAVE 12 · Cybercon træningsforløb\n\nLæs /home/cra/academy/incident-bridge/README.txt.\n\nSupporteksporten er allerede lukket og den lækkede session tilbagekaldt, men en kundes gyldige login kan stadig give adgang til den anden kundes rapport. Din opgave er en varig ejerskabskontrol og en reproducerbar regressionstest.\n\n1. Brug separate cookiefiler til kunde-a og kunde-b. Før ændring: test begge kunder mod begge rapporter og gem hele 2×2-matricen. Du skal bevise selve fejlen, ikke blot gætte en konfigurationsnøgle.\n2. Gem oprindelig politik. Aktivér enforce_report_ownership via din begrænsede SSH-adgang. Bevar de allerede gennemførte sikkerhedstiltag og normal drift.\n3. Test igen begge kunder mod begge rapporter: egen adgang skal virke og fremmed adgang afvises. Test også anonym adgang, den tilbagekaldte session og supporteksporten. En server der afviser alle, er ikke en færdig løsning.\n4. Udfyld kontrol.json og kør bridge-check. Kontrollen kræver faktiske krydslæsninger både før og efter rettelsen, en korrekt slutmatrix og fungerende tjenester. Flaget giver 300 point.\n\nAflever før/efter-matrix, begrundelse, afgrænsninger og en kort driftsoverdragelse. I opgave 13 får du den samlede hændelse og skal selv vælge rækkefølge og samle metoderne fra opgave 9–12.",
+  "estimated_minutes": 55,
+  "resources": {
+    "architecture": "x86_64",
+    "operator_memory_mib": 1024,
+    "target_memory_mib": 768,
+    "operator_vcpus": 1,
+    "target_vcpus": 1,
+    "image_sha256": "6a81c37564db9b1ee84e141922625e1d7c5b389b99bb3c572e0243607d5bb4d2",
+    "network": "isolated-l2-pair-v1",
+    "egress": false
+  },
+  "objectives": [
+    {
+      "id": "repair-report-ownership",
+      "title": "Bestå opgavens tekniske kontrol",
+      "description": "Afprøv faktisk HTTP-adfærd, indsend din kontrolfil og aflever flaget. Rapportens forklaring vurderes af læreren særskilt.",
+      "points": 300,
+      "evidence": "validated_flag"
+    }
+  ],
+  "hints": [
+    "Brug a.cookies og b.cookies; genbrug ikke samme cookiefil til to identiteter.",
+    "Gem begge fremmede rapportlæsninger før rettelsen. Disse skal være faktiske HTTP-forsøg fra din operator.",
+    "Enforce_report_ownership skal være true, men lockdown skal være false. Hvilke positive tests ville fange en total nedlukning?",
+    "Efter rettelse: egne rapporter 200, krydslæsning 403 og anonym adgang 401. Kontrolfilen erstatter ikke din rapport."
+  ]
+}
